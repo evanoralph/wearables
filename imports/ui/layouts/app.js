@@ -9,22 +9,22 @@ import actions from '../../startup/configs/actions';
 
 
 import Index from '../pages/index';
-import Login from '../pages/login';
+import Login from '../pages/login/login';
 import Main from '../pages/main-page/main';
 
 import {compose, merge} from 'react-komposer';
 import getTrackerLoader from '../../lib/getTrackerLoader';
 import { useDeps } from 'react-simple-di-extra';
 
-import RoutesAuthenticated from './routes-authenticated'
-import RoutePublic from './routes-public';
+import RoutesAuthenticated from './routes-wrapper/routes-authenticated';
+import RoutePublic from './routes-wrapper/routes-public';
 
 
 
 const App = appProps => (
   <Provider store={store}>
     <Router>
-      <div className="App">
+      <div id="app-container">
         <Switch>
           <Route exact name="index" path="/" component={Index}/>
           <RoutePublic exact name="login" path="/login" component={Login} {...appProps}/>
