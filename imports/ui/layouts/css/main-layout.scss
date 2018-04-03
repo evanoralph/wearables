@@ -1,7 +1,7 @@
 body {
   margin: 0px;
   #app-container {
-    background: #b0b0b0;
+    background: #F6F4F0;
     height: 100vh;
   }
 }
@@ -15,4 +15,8 @@ body {
 .no-margin{
   margin-right:0px !important;
   margin-left:0px !important;
+}
+
+*:focus{
+  outline: none;
 }

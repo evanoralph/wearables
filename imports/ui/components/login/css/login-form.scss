@@ -1,5 +1,8 @@
 #login-form{
-  height: 100vh;
+  .error{
+    display: none;
+  }
+  height: 90vh;
   width: 100%;
   input{
     width: 100%;
@@ -7,25 +10,32 @@
     height: 10vh;
     margin: 3px 0px;
     padding: 0px 20px;
-    background: grey;
+    background: #726D6D;
     color: white;
     font-size: 16px;
+    box-sizing: border-box;
+    &:focus{
+      outline: none;
+    }
   }
 
   input::-webkit-input-placeholder {
-    color: #c0c0c0;
+    color: #DDB2B2;
   }
 
   button{
     margin: 0 auto;
     width: 90%;
-    background: grey;
+    background: #726D6D;
     color: #dedddd;
-    border: solid 3px #635a5a;
+    border: none;
     display: block;
     padding: 15px;
     margin-top: 10vh;
-    border-radius: 18px;
+    border-radius: 23px;
     font-size: 16px;
+    &:disabled{
+
+    }
   }
 }

@@ -7,17 +7,17 @@ import {injectDeps} from 'react-simple-di-extra';
 import context from '../../startup/configs/context';
 import actions from '../../startup/configs/actions';
 
-
-import Index from '../pages/index';
-import Login from '../pages/login/login';
-import Main from '../pages/main-page/main';
-
 import {compose, merge} from 'react-komposer';
 import getTrackerLoader from '../../lib/getTrackerLoader';
 import { useDeps } from 'react-simple-di-extra';
 
 import RoutesAuthenticated from './routes-wrapper/routes-authenticated';
 import RoutePublic from './routes-wrapper/routes-public';
+
+import Index from '../pages/index';
+import Login from '../pages/login/login';
+import Main from '../pages/main-page/main';
+import SignUp from '../pages/sign-up/sign-up-page'
 
 
 
@@ -28,6 +28,7 @@ const App = appProps => (
         <Switch>
           <Route exact name="index" path="/" component={Index}/>
           <RoutePublic exact name="login" path="/login" component={Login} {...appProps}/>
+          <RoutePublic exact name="sign up" path="/sign-up" component={SignUp} {...appProps}/>
           <RoutesAuthenticated exact name="main" path="/main" component={Main} {...appProps}/>
         </Switch>
       </div>
