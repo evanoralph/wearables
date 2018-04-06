@@ -16,41 +16,59 @@ Please note that all the items and estimates below are not final and are subject
 
 During the development, we may require you to provide feedback on current iterations of the app for enhancements or recommendations.
 
-## Milestone 1 (Prototype)
-Core App Development ( 7 Days )
+### Milestone 1 (Prototype)
+#### Core App Development
 This includes the overall framework to be used in the app. 
+
 Modules Setup and Initialization 
-Front-End UI/UX Partial Design (Android & iOS) (14 Days) 
+#### Front-End UI/UX Partial Design (Android & iOS)
 Conversion of PSD layouts to functional app components
+
 Initial Core Design Layout 
+
 Login Page
+
 Sign Up Page
+
 Forgot Password Page
-Users Module (14 Days)
+
+#### Users Module
 User Data Schema
+
 User Profile Page
+
 Data Bindings
 
-## Milestone 2 (Data Bindings and Back-End Development)
-Back-End Development ( 14 Days )
+### Milestone 2 (Data Bindings and Back-End Development)
+#### Back-End Development
 This will be the server, database and the admin stuff
+
 Servers should be provided before we can start this milestone
+
 AWS Server Setup
+
 App Server
+
 Database Server
+
 S3 Storage Server
+
 API/SDK Integration
-Contacts Module ( 30 Days )
+
+#### Contacts Module
 Contacts Schema
+
 Social Media API Integration
 
-## Milestone 3 (Feature Development/Enhancement)
-Bluetooth Module ( 30 Days )
+### Milestone 3 (Feature Development/Enhancement)
+#### Bluetooth Module
 Bluetooth Pairing and Interfacing
+
 UI/UX Design Enhancements
+
 (All documentation required for sending commands and communicating with the device must be provided before we can start this milestone)
 
-## Milestone 4 (Bug Fixing, QA testing, Publishing Phase)
-Overall QA Testing (Alpha/Beta) 30 Days
-Overall Bug Fixes and enhancements of remaining issues ( 7 Days )
-Publishing (at least 14 Days for iTunes/PlayStore review and approval)
+### Milestone 4 (Bug Fixing, QA testing, Publishing Phase)
+#### Overall QA Testing (Alpha/Beta)
+#### Overall Bug Fixes and enhancements of remaining issues
+#### Publishing
