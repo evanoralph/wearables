@@ -16,7 +16,7 @@ Please note that all the items and estimates below are not final and are subject
 
 During the development, we may require you to provide feedback on current iterations of the app for enhancements or recommendations.
 
-Milestone 1 (Prototype)
+## Milestone 1 (Prototype)
 Core App Development ( 7 Days )
 This includes the overall framework to be used in the app. 
 Modules Setup and Initialization 
@@ -31,7 +31,7 @@ User Data Schema
 User Profile Page
 Data Bindings
 
-Milestone 2 (Data Bindings and Back-End Development)
+## Milestone 2 (Data Bindings and Back-End Development)
 Back-End Development ( 14 Days )
 This will be the server, database and the admin stuff
 Servers should be provided before we can start this milestone
@@ -44,35 +44,13 @@ Contacts Module ( 30 Days )
 Contacts Schema
 Social Media API Integration
 
-Milestone 3 (Feature Development/Enhancement)
+## Milestone 3 (Feature Development/Enhancement)
 Bluetooth Module ( 30 Days )
 Bluetooth Pairing and Interfacing
 UI/UX Design Enhancements
 (All documentation required for sending commands and communicating with the device must be provided before we can start this milestone)
 
-Milestone 4 (Bug Fixing, QA testing, Publishing Phase)
+## Milestone 4 (Bug Fixing, QA testing, Publishing Phase)
 Overall QA Testing (Alpha/Beta) 30 Days
 Overall Bug Fixes and enhancements of remaining issues ( 7 Days )
 Publishing (at least 14 Days for iTunes/PlayStore review and approval)
-
-
-PAYMENT TERMS
-
-Before the project starts:
-30% Downpayment
-
-On completion of each Milestone:
-Milestone 1: 15%
-Milestone 2: 15%
-Milestone 3: 20%
-Milestone 4: 20%
-
-Estimated Development Cost: TBD
-Monthly Maintenance and Support Cost: TBD
-
-Additional Features and Major changes after publishing are subject to additional cost
-
-Supported Device Operating System
-Android: minimum 5.1 (Lollipop)
-iOS: minimum iOS 10
-
