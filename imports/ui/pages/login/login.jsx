@@ -7,8 +7,8 @@ class Login extends React.Component {
   render() {
 
     return(
-      <section id="login-page">
-        <HeaderNav title="LOGIN"/>
+      <section id="login-page" className="row no-padding no-margin">
+        <HeaderNav title="LOGIN" path="/sign-up"/>
         <LoginForm/>
       </section>
     )

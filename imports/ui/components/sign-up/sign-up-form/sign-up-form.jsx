@@ -1,13 +1,13 @@
 import Form from 'react-validation/build/form';
-import Input from 'react-validation/build/input';
+// import Input from 'react-validation/build/input';
 import Button from 'react-validation/build/button';
 import React from 'react';
 import {connect} from 'react-redux';
-import {required, password, email} from '../../../../lib/validations';
+import {required, password,mustTrue, email} from '../../../../lib/validations';
+import {MyValidationInput} from '../../../../lib/custom-react-validation';
 import SocialMediaLogin from '../../login/social-media-login/social-media-login-container';
 import serialize from 'form-serialize';
 import Picker from 'react-mobile-picker-scroll';
-
 
 function _year(){
   let year = 1910;
@@ -51,7 +51,7 @@ class SignUpForm extends React.Component {
     const form = document.querySelector("#sign-up-form");
     const formData = serialize(form, {hash: true});
     console.log(formData);
-    // this.props.login(formData);
+    this.props.register(formData);
   }
 
   // Update the value in response to user picking event
@@ -83,10 +83,10 @@ class SignUpForm extends React.Component {
               onChange={this.handleChange.bind(this)}/>
             <div className="picker-buttons">
               <div className="button-grid">
-                <div className="button" onClick={this.closePicker.bind(this)}>cancel</div>
+                <div className="cancel" onClick={this.closePicker.bind(this)}>cancel</div>
               </div>
               <div className="button-grid">
-                <div className="button" onClick={this.setDate.bind(this)}>ok</div>
+                <div className="button" disabled onClick={this.setDate.bind(this)}>ok</div>
               </div>
             </div>
           </div>
@@ -117,12 +117,18 @@ class SignUpForm extends React.Component {
         className="row no-margin"
       >
         <div className="col-xs-12 no-padding">
-          <Input type="text" name='firstName' placeholder="First Name" validations={[required]}/>
-          <Input type="text" name='lastName' placeholder="Last Name" validations={[required]}/>
-          <Input type="text" name='email' placeholder="Email" validations={[required]}/>
-          <Input type="text" name='date' value={this.state.date} onClick={this.openPicker.bind(this)} placeholder="BirthDay" validations={[required]}/>
+          <MyValidationInput type="text" name='firstName' placeholder="first name" validations={[required]}/>
+          <MyValidationInput type="text" name='lastName' placeholder="fast name" validations={[required]}/>
+          <MyValidationInput type="text" name='email' placeholder="email" validations={[required,email]}/>
+          <div onClick={this.openPicker.bind(this)}>
+            <MyValidationInput type="text" disabled name='date' value={this.state.date}  placeholder="birth day" validations={[required]}/>
+          </div>
+          <MyValidationInput type="password" name='password' placeholder="password" validations={[required,password]}/>
+          <MyValidationInput type="password" name='confirm' placeholder="confirm password" validations={[required]}/>
+          <MyValidationInput type="hidden" name='agree' value={this.state.agreeStatus} validations={[mustTrue]}/>
+
           <div className="terms-and-policy row no-margin">
-            <div className="col-xs-3 no-padding" >
+            <div className="col-xs-2 col-xs-offset-1 no-padding" >
               <div className="toggle-button" style={{"background":this.state.agreeStatus ? "#726D6D" : "white"}} onClick={this.agreeButton.bind(this)}></div>
             </div>
             <div className="col-xs-8 no-padding policy">

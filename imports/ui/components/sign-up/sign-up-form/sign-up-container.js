@@ -9,6 +9,7 @@ function composer (props, onData ) {
 
 const depsToPropsMapper = (context, actions) => ({
   context:context,
+  register:actions.signUp.register
 });
 
 export default merge(

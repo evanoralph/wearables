@@ -6,6 +6,7 @@ import {connect} from 'react-redux';
 import {required,password,email} from '../../../../lib/validations';
 import SocialMediaLogin from '../../login/social-media-login/social-media-login-container';
 import serialize from 'form-serialize';
+import {MyValidationInput} from '../../../../lib/custom-react-validation';
 
 class LoginForm extends React.Component {
 
@@ -33,8 +34,8 @@ class LoginForm extends React.Component {
         className="row middle-xs no-margin"
       >
           <div className="col-xs-12 no-padding">
-            <Input type="text"  name='email' placeholder="Email" validations={[required]}/>
-            <Input type='password' name='password' placeholder="Password" validations={[required]}/>
+            <MyValidationInput type="text"  name='email' placeholder="Email" validations={[required]}/>
+            <MyValidationInput type='password' name='password' placeholder="Password" validations={[required]}/>
             <Button>LOG IN</Button>
             <SocialMediaLogin/>
           </div>

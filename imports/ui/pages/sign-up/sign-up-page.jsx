@@ -8,8 +8,8 @@ class SignUpPage extends React.Component {
   render() {
 
     return(
-      <section id="sign-up-page">
-        <HeaderNav title="SIGN UP"/>
+      <section id="sign-up-page" className="row no-padding no-margin">
+        <HeaderNav title="SIGN UP" path="/login"/>
         <SignUpForm/>
       </section>
     )

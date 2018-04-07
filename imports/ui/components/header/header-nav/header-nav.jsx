@@ -1,20 +1,23 @@
 import React from 'react';
 import {connect} from 'react-redux';
+import {Redirect} from 'react-router-dom'
+
+import { Link } from 'react-router-dom';
 
 class Header extends React.Component {
 
   render() {
 
-    const {title} = this.props;
+    const {title,path} = this.props;
     
     return(
       <div id="header-nav" className="row no-padding no-margin middle-xs">
-        <div className="col-xs-4 header-nav-left-button">
-          <span className="fa fa-chevron-left "></span>
+        <div className="col-xs-3 header-nav-left-button">
+          <Link to={path}><span className="fa fa-chevron-left " ></span></Link>
         </div>
-        <div className="col-xs-4 header-nav-title">{title}</div>
+        <div className="col-xs-6 header-nav-title">{title}</div>
 
-        <div className="col-xs-4 rheader-nav-right-button"></div>
+        <div className="col-xs-3 rheader-nav-right-button"></div>
       </div>
     ) ;
   }

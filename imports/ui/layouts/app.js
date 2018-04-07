@@ -18,6 +18,7 @@ import Index from '../pages/index';
 import Login from '../pages/login/login';
 import Main from '../pages/main-page/main';
 import SignUp from '../pages/sign-up/sign-up-page'
+import {syncHistoryWithStore} from 'react-router-redux'
 
 
 

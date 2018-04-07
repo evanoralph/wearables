@@ -9,13 +9,21 @@ const required = (value) => {
 
 const email = (value) => {
   if (!validator.isEmail(value)) {
-    return `${value} is not a valid email.`
+    return <span className="error"> {value} is not a valid email </span>
   }
 };
 
 const lt = (value, props) => {
   // get the maxLength from component's props
   if (!value.toString().trim().length > props.maxLength) {
+    // Return jsx
+    return <span className="error">The value exceeded {props.maxLength} symbols.</span>
+  }
+};
+
+const mustTrue = (value,props) => {
+  // get the maxLength from component's props
+  if (value !== true) {
     // Return jsx
     return <span className="error">The value exceeded {props.maxLength} symbols.</span>
   }
@@ -35,8 +43,9 @@ const password = (value, props, components) => {
 
 
 export {
-required,
-email,
-lt,
-password
+  required,
+  email,
+  lt,
+  password,
+  mustTrue
 }
