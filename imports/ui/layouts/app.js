@@ -18,6 +18,7 @@ import Index from '../pages/index';
 import Login from '../pages/login/login';
 import Main from '../pages/main-page/main';
 import SignUp from '../pages/sign-up/sign-up-page'
+import SignUpSelection from '../pages/sign-up/sign-up-selection-page'
 import {syncHistoryWithStore} from 'react-router-redux'
 
 
@@ -30,7 +31,8 @@ const App = appProps => (
           <Route exact name="index" path="/" component={Index}/>
           <RoutePublic exact name="login" path="/login" component={Login} {...appProps}/>
           <RoutePublic exact name="sign up" path="/sign-up" component={SignUp} {...appProps}/>
-          <RoutesAuthenticated exact name="main" path="/main" component={Main} {...appProps}/>
+          <RoutePublic exact name="sign up" path="/sign-up-selection" component={SignUpSelection} {...appProps}/>
+          <RoutePublic exact name="main" path="/main" component={Main} {...appProps}/>
         </Switch>
       </div>
     </Router>

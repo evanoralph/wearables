@@ -9,7 +9,7 @@ class SignUpPage extends React.Component {
 
     return(
       <section id="sign-up-page" className="row no-padding no-margin">
-        <HeaderNav title="SIGN UP" path="/login"/>
+        <HeaderNav title="SIGN UP" path="/sign-up-selection"/>
         <SignUpForm/>
       </section>
     )

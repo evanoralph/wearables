@@ -2,7 +2,7 @@ import React from 'react';
 import {connect} from 'react-redux';
 import {required,password,email} from '../../../../lib/validations';
 
-class LoginForm extends React.Component {
+class SocialMediaLogin extends React.Component {
 
   render() {
     return(
@@ -23,4 +23,4 @@ const mapStateToProps = (state) => {
   return state;
 };
 
-export default connect(mapStateToProps)(LoginForm);
+export default connect(mapStateToProps)(SocialMediaLogin);

@@ -1,14 +1,15 @@
 import React from 'react';
 import {connect} from 'react-redux';
 
-import Content from '../../components/main/main-content-container';
+import Content from '../../components/main/main-content/main-content-container';
+import HeaderSettings from '../../components/header/header-settings/header-settings-container';
 
 class Main extends React.Component {
 
   render() {
     return(
-      <div className="Index">
-        <h2>Main</h2>
+      <div id="main-page" className="Index">
+        <HeaderSettings/>
         <Content/>
       </div>
     )

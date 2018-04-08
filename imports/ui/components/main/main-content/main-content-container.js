@@ -1,6 +1,6 @@
 import {compose, merge} from 'react-komposer';
 import MainContent from './main-content';
-import getTrackerLoader from '../../../lib/getTrackerLoader';
+import getTrackerLoader from '../../../../lib/getTrackerLoader';
 import { useDeps } from 'react-simple-di-extra';
 
 function composer (props, onData ) {
