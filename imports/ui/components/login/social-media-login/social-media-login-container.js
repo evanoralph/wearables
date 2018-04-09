@@ -9,6 +9,7 @@ function composer (props, onData ) {
 
 const depsToPropsMapper = (context, actions) => ({
   context:context,
+  loginWithFacebook:actions.login.loginWithFacebook
 });
 
 export default merge(

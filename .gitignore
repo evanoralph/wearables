@@ -1,2 +1,6 @@
 node_modules/
 .idea
+settings.json
+mobile-config.js
+.deploy
+mobile.sh

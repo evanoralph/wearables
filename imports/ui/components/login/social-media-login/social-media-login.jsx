@@ -4,10 +4,15 @@ import {required,password,email} from '../../../../lib/validations';
 
 class SocialMediaLogin extends React.Component {
 
+
+  logFb(){
+    this.props.loginWithFacebook();
+  }
+
   render() {
     return(
       <div id="social-media-login" className="row no-padding no-margin" >
-        <div className="col-xs-offset-3 col-xs-3 no-padding sm-button-container">
+        <div onClick={this.logFb.bind(this)} className="col-xs-offset-3 col-xs-3 no-padding sm-button-container">
           <div className="fa fa-facebook"></div>
         </div>
         <div className="col-xs-3 no-padding sm-button-container">
