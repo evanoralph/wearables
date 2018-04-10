@@ -32,3 +32,36 @@
   }
 
 }
+
+.side-header {
+  width: 100%;
+  text-align: center;
+  height: 50px;
+  padding-top: 20px;
+
+  .sidebar-title {
+    height: 100%;
+    font-size: 20px;
+    color: #2A2828;
+    letter-spacing: 2px;
+  }
+}
+
+.side-menu {
+
+  .side-menu-item {
+    padding-left: 30px;
+    text-transform: uppercase;
+    font-size: 14px;
+    letter-spacing: 1px;
+    color: #797575;
+    height: 56px;
+    line-height: 56px;
+    transition: background-color 0.3s ease-in-out;
+
+    &.active, &:active, &:hover {
+      background-color: rgba(0,0,0,0.1);
+    }
+
+  }
+}

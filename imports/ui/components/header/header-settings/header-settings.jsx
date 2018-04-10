@@ -7,7 +7,7 @@ import { Link } from 'react-router-dom';
 class HeaderSettings extends React.Component {
 
   toggleMenu() {
-
+    this.props.onSetOpen(!this.props.open)
   }
 
   render() {
