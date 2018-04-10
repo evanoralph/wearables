@@ -1,5 +1,5 @@
 import {compose, merge} from 'react-komposer';
-import LoginForm from './header-nav';
+import HeaderNav from './header-nav';
 import getTrackerLoader from '../../../../lib/getTrackerLoader';
 import { useDeps } from 'react-simple-di-extra';
 
@@ -15,4 +15,4 @@ const depsToPropsMapper = (context, actions) => ({
 export default merge(
   compose(getTrackerLoader(composer)),
   useDeps(depsToPropsMapper),
-)(LoginForm);
+)(HeaderNav);

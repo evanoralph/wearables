@@ -13,4 +13,22 @@
     margin-left: 10px;
     font-size: 28px !important;
   }
+  .logo-header {
+    img {
+      margin-left: 5px;
+      width: 170px !important;
+    }
+  }
+
+  .menu-header {
+    right: 20px;
+    position: absolute;
+    background-image: url("/img/ellipse-menu.svg");
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    width: 10px;
+    height: 40px;
+  }
+
 }
