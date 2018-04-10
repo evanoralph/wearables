@@ -1,39 +1,40 @@
-#social-media-button{
-  .title{
+#social-media-button {
+  .title {
     text-align: center;
-    font-size: 28px;
+    font-size: 20px;
     font-family: Europa;
   }
-  .or{
+  .or {
     text-align: center;
-    font-size: 30px;
+    font-size: 20px;
+    margin: 10px auto;
   }
-  .sm-button{
+  .sm-button {
     margin: 10px 0px;
-    text-align: center;
+    text-align: left;
 
-    .fa{
+    .fa {
       margin-right: 10px;
       font-size: 30px;
     }
-    a{
+    a {
       text-decoration: none;
     }
 
-    .button{
+    .button {
       background: #726D6D;
       letter-spacing: 3px;
       height: 8vh;
       color: #FCCBBB;
       width: 70%;
       margin: 0px auto;
-      font-size: 25px;
+      font-size: 22px;
       border-radius: 30px;
     }
   }
-  .sign-up{
+  .sign-up {
     text-align: center;
-    font-size: 19px;
+    font-size: 14px;
     margin-top: 6vh;
   }
 }
