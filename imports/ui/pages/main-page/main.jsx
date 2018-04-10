@@ -56,6 +56,9 @@ class Main extends React.Component {
             PRIVACY POLICY
           </div>
         </div>
+        <div className="side-footer">
+          <button>LOG OUT</button>
+        </div>
       </div>;
 
     let SideMenuStyles = {
