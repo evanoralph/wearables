@@ -8,6 +8,7 @@ import {MyValidationInput} from '../../../../lib/custom-react-validation';
 import SocialMediaLogin from '../../login/social-media-login/social-media-login-container';
 import serialize from 'form-serialize';
 import Picker from 'react-mobile-picker-scroll';
+import classNames from 'classnames';
 
 function _year(){
   let year = 1910;
@@ -72,27 +73,27 @@ class SignUpForm extends React.Component {
   picker() {
 
     const {optionGroups, valueGroups, pickerStatus} = this.state;
-    if (pickerStatus === true) {
-      return (
-        <div className="picker-wrapper">
-          <div className="picker-inner-wrapper">
-            <div className="picker-title">BIRTHDAY</div>
-            <Picker
-              optionGroups={optionGroups}
-              valueGroups={valueGroups}
-              onChange={this.handleChange.bind(this)}/>
-            <div className="picker-buttons">
-              <div className="button-grid">
-                <div className="cancel" onClick={this.closePicker.bind(this)}>cancel</div>
-              </div>
-              <div className="button-grid">
-                <div className="button" disabled onClick={this.setDate.bind(this)}>ok</div>
-              </div>
+
+    return (
+      <div className={classNames({"picker-wrapper": true, "showPicker" : pickerStatus})}>
+        <div className={classNames({"picker-inner-wrapper": true, "showPicker" : pickerStatus})}>
+          <div className="picker-title">BIRTHDAY</div>
+          <Picker
+            optionGroups={optionGroups}
+            valueGroups={valueGroups}
+            onChange={this.handleChange.bind(this)}/>
+          <div className="picker-buttons">
+            <div className="button-grid">
+              <div className="cancel" onClick={this.closePicker.bind(this)}>cancel</div>
+            </div>
+            <div className="button-grid">
+              <div className="button" disabled onClick={this.setDate.bind(this)}>ok</div>
             </div>
           </div>
         </div>
-      )
-    }
+      </div>
+    )
+
   }
 
   openPicker(){

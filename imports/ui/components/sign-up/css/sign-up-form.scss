@@ -3,7 +3,7 @@
     color: red;
     margin: 10vw;
   }
-  height: calc(100% - 84px);
+  height: calc(100vh - 10vh - 20px);
   width: 100%;
   overflow: scroll;
 
@@ -40,13 +40,34 @@
     }
   }
   .picker-wrapper{
-    transition: visibility 0s, opacity 0.5s linear;
     background: rgba(0, 0, 0, 0.45);
     top: 0px;
     position: absolute;
     width: 100%;
     height: 100vh;
+    transition: all 0.1s ease-in-out;
+
+    //default ui state
+    opacity: 0;
+    visibility: hidden;
+
+    //active ui state
+    &.showPicker {
+      opacity: 1;
+      visibility: visible;
+    }
+
     .picker-inner-wrapper{
+      transition: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+
+      //default ui state
+      transform: scale(0);
+
+      //active ui state
+      &.showPicker {
+        transform: scale(1);
+      }
+
       .picker-buttons{
         .button-grid{
           width: 50%;
@@ -85,12 +106,6 @@
       width: 90%;
       border-radius: 7px;
       padding: 11px;
-    }
-    .picker-container{
-
-
-
-
     }
   }
 }
