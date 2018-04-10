@@ -8,7 +8,7 @@ class Main extends React.Component {
 
   render() {
     return(
-      <div id="main-page" className="Index">
+      <div id="main-page" className="page-container Index">
         <HeaderSettings/>
         <Content/>
       </div>
