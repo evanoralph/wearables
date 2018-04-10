@@ -118,10 +118,10 @@ class SignUpForm extends React.Component {
       >
         <div className="col-xs-12 no-padding">
           <MyValidationInput type="text" name='firstName' placeholder="first name" validations={[required]}/>
-          <MyValidationInput type="text" name='lastName' placeholder="fast name" validations={[required]}/>
+          <MyValidationInput type="text" name='lastName' placeholder="last name" validations={[required]}/>
           <MyValidationInput type="text" name='email' placeholder="email" validations={[required,email]}/>
           <div onClick={this.openPicker.bind(this)}>
-            <MyValidationInput type="text" disabled name='date' value={this.state.date}  placeholder="birth day" validations={[required]}/>
+            <MyValidationInput type="text" disabled name='date' value={this.state.date}  placeholder="birthday" validations={[required]}/>
           </div>
           <MyValidationInput type="password" name='password' placeholder="password" validations={[required,password]}/>
           <MyValidationInput type="password" name='confirm' placeholder="confirm password" validations={[required]}/>
@@ -132,7 +132,7 @@ class SignUpForm extends React.Component {
               <div className="toggle-button" style={{"background":this.state.agreeStatus ? "#726D6D" : "white"}} onClick={this.agreeButton.bind(this)}></div>
             </div>
             <div className="col-xs-8 no-padding policy">
-              I agree to the terms of use and the privacy policy
+              I agree to the <a>terms of use</a> and the <a>privacy policy</a>.
             </div>
           </div>
           <Button>SIGN UP</Button>

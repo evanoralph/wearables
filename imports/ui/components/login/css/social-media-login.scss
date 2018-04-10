@@ -1,16 +1,17 @@
 #social-media-login{
+  margin-top: 50px;
   .sm-button-container{
     text-align: center;
     .fa{
-      background: grey;
-      width: 60px;
-      height: 60px;
+      background: #726D6D;
+      width: 72px;
+      height: 72px;
       color: #FCCBBB;
       padding: 13px 0px;
       box-sizing: border-box;
       border-radius: 50%;
-      margin-top: 26px;
-      font-size: 35px;
+      line-height: 48px;
+      font-size: 36px;
     }
   }
 }

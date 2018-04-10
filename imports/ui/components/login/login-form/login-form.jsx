@@ -34,8 +34,8 @@ class LoginForm extends React.Component {
         className="row middle-xs no-margin"
       >
           <div className="col-xs-12 no-padding">
-            <MyValidationInput type="text"  name='email' placeholder="Email" validations={[required]}/>
-            <MyValidationInput type='password' name='password' placeholder="Password" validations={[required]}/>
+            <MyValidationInput type="text"  name='email' placeholder="email" validations={[required]}/>
+            <MyValidationInput type='password' name='password' placeholder="password" validations={[required]}/>
             <Button>LOG IN</Button>
             <SocialMediaLogin/>
           </div>

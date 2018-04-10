@@ -13,7 +13,7 @@ const Input = ({ error, isChanged, isUsed, ...props }) => {
     <div style={{"display":props.type === "hidden" ? "none" : "block"}}>
       <div className="input-container">
         <input id={props.name} {...props} />
-        <label htmlFor={props.name} className="placeholder"  style={{"top":props.value !== "" ? 0 : -8}}>{props.placeholder}</label>
+        <label htmlFor={props.name} className="placeholder"  style={{"top":props.value !== "" ? 0 : -15}}>{props.placeholder}</label>
       </div>
       {isChanged && isUsed && error}
     </div>

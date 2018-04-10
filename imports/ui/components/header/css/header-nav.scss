@@ -1,15 +1,16 @@
 #header-nav{
   height: 10vh;
-  margin-top: 5vh;
+  margin-top: 20px;
   width: 100%;
   .header-nav-title{
     text-align: center;
     color: #2A2828;
     font-family: Europa;
-    font-size: 25px;
+    font-size: 20px;
   }
   .fa-chevron-left{
     color: #726D6D;
-    font-size: 30px !important;
+    margin-left: 10px;
+    font-size: 28px !important;
   }
 }

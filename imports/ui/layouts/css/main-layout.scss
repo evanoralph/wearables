@@ -21,3 +21,46 @@ body {
 *:focus{
   outline: none;
 }
+
+.page-container {
+  width: 100% !important;
+  height: 100% !important;
+}
+
+a {
+  color: #797575;
+  text-decoration: underline;
+}
+
+.input-container{
+  input{
+    width: 100%;
+    background: none;
+    border: none;
+    font-size: 21px;
+    color: white;
+  }
+  input::-webkit-input-placeholder {
+    opacity: 0;
+  }
+  .placeholder{
+    color: #FCCBBB;
+    font-size: 20px;
+    position: relative;
+    transition: top 0.2s ease-out;
+  }
+
+  width: 100%;
+  border: none;
+  height: 11vh;
+  margin: 5px 0px;
+  padding: 0px 15vw;
+  background: #726D6D;
+  color: white;
+  box-sizing: border-box;
+  position: relative;
+  padding-top: 10px;
+  &:focus{
+    outline: none;
+  }
+}
