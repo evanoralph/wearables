@@ -1,0 +1,41 @@
+#index-page {
+  height: 100vh !important;
+  margin-top: -20px;
+  overflow: hidden;
+
+  .logo {
+    width: 60vw;
+    height: 55vh;
+    margin: 0px auto;
+    margin-top: 15vh;
+    background-image: url('/img/unplugged-logo-center.svg');
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+  }
+
+  .sm-button {
+    margin: 15px 0px;
+    text-align: left;
+
+    .fa {
+      margin-right: 10px;
+      font-size: 30px;
+    }
+    a {
+      text-decoration: none;
+    }
+
+    .button {
+      background: #726D6D;
+      letter-spacing: 3px;
+      height: 8vh;
+      color: #FFF;
+      width: 70%;
+      margin: 0px auto;
+      font-size: 24px;
+      border-radius: 30px;
+    }
+  }
+
+}
