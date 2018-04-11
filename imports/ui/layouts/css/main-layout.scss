@@ -1,10 +1,16 @@
 body {
   font-family: 'Europa';
   margin: 0px;
+  -webkit-overflow-scrolling: touch !important;
+
   #app-container {
     background: #F6F4F0;
     height: 100vh;
   }
+}
+
+div, form, table {
+  -webkit-overflow-scrolling: touch !important;
 }
 
 .hide {
