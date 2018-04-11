@@ -1,4 +1,5 @@
 import React from 'react';
+import { TransitionGroup, CSSTransition } from "react-transition-group";
 import {BrowserRouter as Router, Switch, Route} from 'react-router-dom';
 import {Meteor} from 'meteor/meteor';
 import {Provider} from 'react-redux';
@@ -150,26 +151,35 @@ class App extends React.Component {
       },
     };
 
-    console.log("app props", this.props);
-
     return (
       <Provider store={store}>
         <Router>
-          <div id="app-container">
-            <Switch>
-              <Route exact name="index" path="/" component={Index}/>
-              <RoutePublic exact name="login" path="/login" component={Login} {...this.props}/>
-              <RoutePublic exact name="login" path="/login-selection" component={LoginSelection} {...this.props}/>
-              <RoutePublic exact name="sign up" path="/sign-up" component={SignUp} {...this.props}/>
-              <RoutePublic exact name="sign up" path="/sign-up-selection" component={SignUpSelection} {...this.props}/>
-              <RoutePublic exact name="main" path="/main" component={Main} onSetOpen={this.onSetSidebarOpen} open={this.state.sidebarOpen} {...this.props}/>
-            </Switch>
-            <Sidebar sidebar={SideMenu} styles={SideMenuStyles}
-                     open={this.state.sidebarOpen}
-                     onSetOpen={this.onSetSidebarOpen}>
-              <div></div>
-            </Sidebar>
-          </div>
+          <Route render={({ location }) => (
+            <div id="app-container">
+              <TransitionGroup>
+                {/* no different than other usage of
+                  CSSTransition, just make sure to pass
+                  `location` to `Switch` so it can match
+                  the old location as it animates out
+              */}
+                <CSSTransition key={location.key} classNames="fade" timeout={300}>
+                  <Switch location={location}>
+                    <Route exact name="index" path="/" component={Index}/>
+                    <RoutePublic exact name="login" path="/login" component={Login} {...this.props}/>
+                    <RoutePublic exact name="login" path="/login-selection" component={LoginSelection} {...this.props}/>
+                    <RoutePublic exact name="sign up" path="/sign-up" component={SignUp} {...this.props}/>
+                    <RoutePublic exact name="sign up" path="/sign-up-selection" component={SignUpSelection} {...this.props}/>
+                    <RoutePublic exact name="main" path="/main" component={Main} onSetOpen={this.onSetSidebarOpen} open={this.state.sidebarOpen} {...this.props}/>
+                  </Switch>
+                </CSSTransition>
+              </TransitionGroup>
+              <Sidebar sidebar={SideMenu} styles={SideMenuStyles}
+                       open={this.state.sidebarOpen}
+                       onSetOpen={this.onSetSidebarOpen}>
+                <div></div>
+              </Sidebar>
+            </div>
+          )} />
         </Router>
       </Provider>
     );
