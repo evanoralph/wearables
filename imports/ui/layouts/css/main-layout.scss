@@ -2,6 +2,7 @@ body {
   font-family: 'Europa';
   margin: 0px;
   -webkit-overflow-scrolling: touch !important;
+  overflow: hidden !important;
 
   #app-container {
     background: #F6F4F0;
@@ -31,14 +32,31 @@ div, form, table {
   outline: none;
 }
 
+a {
+  color: #797575;
+  text-decoration: underline;
+}
+
 .page-container {
   width: 100% !important;
   height: 100% !important;
 }
 
-a {
-  color: #797575;
-  text-decoration: underline;
+.content-container {
+  padding: 30px;
+  width: 100%;
+  height: calc(100vh - 10vh - 20px);
+  overflow-y: auto; // for content scrolling
+  overflow-x: hidden;
+
+  .content-title {
+    width: 100%;
+    display: block;
+    text-align: center !important;
+    font-size: 20px;
+    letter-spacing: 1px;
+  }
+
 }
 
 .input-container{

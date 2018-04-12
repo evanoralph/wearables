@@ -1,0 +1,63 @@
+#jewelry-collection {
+
+  width: 100%;
+  height: auto;
+  padding-bottom: 50px; //for spacing
+  padding-top: 24px;
+  overflow-y: auto;
+
+  div.jewelry-box {
+    float: left;
+    border: 1px solid #726D6D;
+    width: 45%;
+    height: 164px;
+    margin-bottom: 8%;
+
+    &:nth-child(odd) {
+      margin-right: 8%;
+    }
+
+    &.add-item {
+      background-color: #797575;
+      background-image: url('/img/add.svg');
+      background-repeat: no-repeat;
+      background-size: 38%;
+      background-position: center;
+      box-shadow: inset 0 0 10px rgba(0,0,0,0.5);
+    }
+
+    .edit-jewelry {
+      float: right;
+      width: 20px;
+      height: 20px;
+      margin: 5px;
+      background-image: url('/img/edit.svg');
+      background-repeat: no-repeat;
+      background-size: contain;
+      background-position: center;
+    }
+
+    .jewelry-image {
+      width: 60px;
+      height: 60px;
+      margin: 20px auto;
+      margin-bottom: 15px;
+      border-radius: 50px;
+      background-color: #8B8084;
+      background-repeat: no-repeat;
+      background-size: contain;
+      background-position: center;
+    }
+
+    span {
+      display: block;
+      text-align: center;
+      width: 100%;
+      font-size: 14px;
+      letter-spacing: 1px;
+      color: #8B8084;
+    }
+
+  }
+
+}

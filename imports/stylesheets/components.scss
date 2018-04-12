@@ -1,13 +1,13 @@
+//header components
+@import "../ui/components/header/css/header-nav";
+
+//sign up components
+@import "../ui/components/sign-up/css/sign-up-form";
+@import "../ui/components/sign-up/css/social-media-button";
 
 //login components
 @import "../ui/components/login/css/login-form";
 @import "../ui/components/login/css/social-media-login";
 
-
-//header components
-@import "../ui/components/header/css/header-nav";
-
-
-//sign up components
-@import "../ui/components/sign-up/css/sign-up-form";
-@import "../ui/components/sign-up/css/social-media-button";
+//main page components
+@import "../ui/components/main/css/main-content";
