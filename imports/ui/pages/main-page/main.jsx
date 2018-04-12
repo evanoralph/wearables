@@ -7,6 +7,7 @@ class Main extends React.Component {
 
   constructor(props) {
     super(props);
+    console.log(props);
     this.state = {
       showHeader: true,
       currentUser: props.currentUser,
@@ -18,7 +19,7 @@ class Main extends React.Component {
     return(
       <div id="main-page" className="page-container row no-padding no-margin">
         <HeaderSettings onSetOpen={this.props.onSetOpen} open={this.props.open} />
-        <Content/>
+        <Content {...this.props}/>
 
       </div>
     )

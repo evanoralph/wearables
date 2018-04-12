@@ -8,7 +8,7 @@ const RoutePublic = ({ loggingIn, authenticated, component, onSetOpen, open, ...
     if (loggingIn) return <div></div>;
     return !authenticated ?
     (React.createElement(component, { ...props, loggingIn, authenticated, onSetOpen, open  })) :
-    (<Redirect to="/documents" />);
+    (<Redirect to="/main" />);
   }} />
 );
 

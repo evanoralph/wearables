@@ -6,6 +6,12 @@ import HeaderNav from '../../../components/header/header-nav/header-nav-containe
 
 class MainContent extends React.Component {
 
+  constructor(props) {
+    super(props);
+    console.log(props);
+  }
+
+
   editJewelry() {
     alert("This will edit the current jewelry");
   }
