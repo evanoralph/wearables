@@ -59,6 +59,18 @@ class App extends React.Component {
     });
   }
 
+  sideBar(SideMenu,SideMenuStyles){
+    if(Meteor.userId()) {
+      return (
+        <Sidebar sidebar={SideMenu} styles={SideMenuStyles}
+                 open={this.state.sidebarOpen}
+                 onSetOpen={this.onSetSidebarOpen}>
+          <div></div>
+        </Sidebar>
+      )
+    }
+  }
+
   render() {
 
     var SideMenu =
@@ -181,11 +193,7 @@ class App extends React.Component {
                   </Switch>
                 </CSSTransition>
               </TransitionGroup>
-              <Sidebar sidebar={SideMenu} styles={SideMenuStyles}
-                       open={this.state.sidebarOpen}
-                       onSetOpen={this.onSetSidebarOpen}>
-                <div></div>
-              </Sidebar>
+            {this.sideBar(SideMenu,SideMenuStyles)}
             </div>
           )} />
         </Router>

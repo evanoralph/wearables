@@ -20,7 +20,7 @@ class LoginForm extends React.Component {
     const form = document.querySelector("#login-form");
     const formData = serialize(form, {hash:true});
     console.log(formData);
-    // this.props.login(formData);
+    this.props.login(formData);
   }
 
 

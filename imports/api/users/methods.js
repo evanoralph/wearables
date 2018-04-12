@@ -18,4 +18,7 @@ Meteor.methods({
 
     return {userId}
   },
+  'delete.users'(_id){
+    Meteor.users.remove({_id})
+  }
 });

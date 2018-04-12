@@ -23,19 +23,35 @@ export default {
   userLoginGoogle({Meteor}){
 
     if (Meteor.isCordova) { // signIn through cordova
-      Meteor.cordova_g_plus({
-        cordova_g_plus: true,
-        profile: ["email", "email_verified", "gender", "locale", "name", "picture"],
-        webClientId: '825480306969-uglck4esst2m4urn33fl92qb5mjkbiih.apps.googleusercontent.com',
+      // Meteor.cordova_g_plus({
+      //   cordova_g_plus: true,
+      //   profile: ["email"],
+      //   webClientId: '825480306969-uglck4esst2m4urn33fl92qb5mjkbiih.apps.googleusercontent.com',
+      // }, (error) => {
+      //   if (error) {
+      //     // error handling code
+      //   }
+      // });
+      Meteor.loginWithGoogle({
+
+        loginStyle: "redirect" ,
+        'webClientId': '825480306969-uglck4esst2m4urn33fl92qb5mjkbiih.apps.googleusercontent.com',
+        requestPermissions: ['email'],
+        loginUrlParameters: {include_granted_scopes: true},
+        requestOfflineToken: true,
+        requestPermissions: ['email', 'profile'],
+
       }, (error) => {
-        if (error) {
-          // error handling code
-        }
+        if (error) alert(error);
       });
     } else { // signIn through browser
       if (Accounts.loginServicesConfigured()) {
         Meteor.loginWithGoogle({
 
+          loginStyle: "redirect" ,
+          'webClientId': '825480306969-uglck4esst2m4urn33fl92qb5mjkbiih.apps.googleusercontent.com',
+          requestPermissions: ['email'],
+          loginUrlParameters: {include_granted_scopes: true},
           requestOfflineToken: true,
           requestPermissions: ['email', 'profile'],
 

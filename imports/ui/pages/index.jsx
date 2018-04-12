@@ -12,7 +12,7 @@ class Index extends React.Component {
         <Link to="/sign-up-selection"><div className="row button middle-xs center-xs">SIGN UP</div></Link>
       </div>
       <div className="col-xs-12 no-padding sm-button">
-        <Link to="/login-selection"><div className="row button middle-xs center-xs">LOG IN</div></Link>
+        <Link to="/login"><div className="row button middle-xs center-xs">LOG IN</div></Link>
       </div>
     </div>
     )
