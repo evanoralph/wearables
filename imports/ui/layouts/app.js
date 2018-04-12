@@ -1,6 +1,6 @@
 import React from 'react';
 import { TransitionGroup, CSSTransition } from "react-transition-group";
-import {BrowserRouter as Router, Switch, Route} from 'react-router-dom';
+import {BrowserRouter as Router, Switch, Route, Link} from 'react-router-dom';
 import {Meteor} from 'meteor/meteor';
 import {Provider} from 'react-redux';
 import store from '../../startup/configs/store';
@@ -15,15 +15,16 @@ import {useDeps} from 'react-simple-di-extra';
 import RoutesAuthenticated from './routes-wrapper/routes-authenticated';
 import RoutePublic from './routes-wrapper/routes-public';
 
+import Sidebar from 'react-sidebar';
+
+// PAGES
 import Index from '../pages/index';
 import Login from '../pages/login/login';
 import Main from '../pages/main-page/main';
 import SignUp from '../pages/sign-up/sign-up-page'
 import SignUpSelection from '../pages/sign-up/sign-up-selection-page'
 import LoginSelection from '../pages/login/login-selection-page'
-import {syncHistoryWithStore} from 'react-router-redux'
-import Sidebar from 'react-sidebar';
-
+import Profile from '../pages/profile-page/profile-page';
 
 class App extends React.Component {
 
@@ -60,23 +61,23 @@ class App extends React.Component {
         </div>
         <div className="side-menu">
           <div className="side-menu-item"
-               onClick={this.onSetSidebarOpen.bind(this, !this.state.sidebarOpen, "/")}>
+               onClick={this.onSetSidebarOpen.bind(this, !this.state.sidebarOpen)}>
             CONTACT SETTINGS
           </div>
-          <div className="side-menu-item"
-               onClick={this.onSetSidebarOpen.bind(this, !this.state.sidebarOpen, "/")}>
+          <Link className="side-menu-item" to="/profile"
+               onClick={this.onSetSidebarOpen.bind(this, !this.state.sidebarOpen, "/profile")}>
             MY PROFILE
-          </div>
+          </Link>
           <div className="side-menu-item"
-               onClick={this.onSetSidebarOpen.bind(this, !this.state.sidebarOpen, "/")}>
+               onClick={this.onSetSidebarOpen.bind(this, !this.state.sidebarOpen)}>
             SUPPORT
           </div>
           <div className="side-menu-item"
-               onClick={this.onSetSidebarOpen.bind(this, !this.state.sidebarOpen, "/")}>
+               onClick={this.onSetSidebarOpen.bind(this, !this.state.sidebarOpen)}>
             TERMS OF SERVICE
           </div>
           <div className="side-menu-item"
-               onClick={this.onSetSidebarOpen.bind(this, !this.state.sidebarOpen, "/")}>
+               onClick={this.onSetSidebarOpen.bind(this, !this.state.sidebarOpen)}>
             PRIVACY POLICY
           </div>
         </div>
@@ -170,6 +171,7 @@ class App extends React.Component {
                     <RoutePublic exact name="sign up" path="/sign-up" component={SignUp} {...this.props}/>
                     <RoutePublic exact name="sign up" path="/sign-up-selection" component={SignUpSelection} {...this.props}/>
                     <RoutePublic exact name="main" path="/main" component={Main} onSetOpen={this.onSetSidebarOpen} open={this.state.sidebarOpen} {...this.props}/>
+                    <RoutePublic exact name="profile" path="/profile" component={Profile} onSetOpen={this.onSetSidebarOpen} open={this.state.sidebarOpen} {...this.props}/>
                   </Switch>
                 </CSSTransition>
               </TransitionGroup>

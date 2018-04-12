@@ -1,6 +1,6 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import Content from '../../components/main/main-content/main-content-container';
+import Content from '../../components/profile/profile-content/profile-content-container';
 import HeaderSettings from '../../components/header/header-settings/header-settings-container';
 
 class Main extends React.Component {
@@ -15,11 +15,11 @@ class Main extends React.Component {
   }
 
   render() {
+
     return(
-      <div id="main-page" className="page-container row no-padding no-margin">
+      <div id="profile-page" className="page-container row no-padding no-margin">
         <HeaderSettings onSetOpen={this.props.onSetOpen} open={this.props.open} />
         <Content/>
-
       </div>
     )
   }

@@ -15,7 +15,7 @@ class HeaderSettings extends React.Component {
     return(
       <div id="header-settings" className="row no-padding no-margin middle-xs">
         <div className="col-xs-3 header-nav-left-button">
-          <span className="logo-header"><img src="/img/unplugged-logo-horizontal.png" /></span>
+          <Link to={"/main"}><span className="logo-header"><img src="/img/unplugged-logo-horizontal.png" /></span></Link>
         </div>
         <div className="menu-header" onClick={this.toggleMenu.bind(this)}/>
 
