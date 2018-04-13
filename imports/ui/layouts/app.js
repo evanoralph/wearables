@@ -30,6 +30,7 @@ class App extends React.Component {
 
   constructor(props) {
     super(props);
+    console.log(props)
     this.state = {
       showHeader: true,
       currentUser: props.currentUser,
@@ -52,6 +53,12 @@ class App extends React.Component {
     }
   }
 
+  logOut(){
+    Meteor.logout(()=>{
+      this.setState({sidebarOpen: !this.state.sidebarOpen});
+    });
+  }
+
   render() {
 
     var SideMenu =
@@ -60,29 +67,29 @@ class App extends React.Component {
           <span className="sidebar-title">SETTINGS</span>
         </div>
         <div className="side-menu">
-          <div className="side-menu-item"
+          <Link className="side-menu-item" to={'/contact'}
                onClick={this.onSetSidebarOpen.bind(this, !this.state.sidebarOpen)}>
             CONTACT SETTINGS
-          </div>
+          </Link>
           <Link className="side-menu-item" to="/profile"
                onClick={this.onSetSidebarOpen.bind(this, !this.state.sidebarOpen, "/profile")}>
             MY PROFILE
           </Link>
-          <div className="side-menu-item"
+          <Link className="side-menu-item"  to={'/contact'}
                onClick={this.onSetSidebarOpen.bind(this, !this.state.sidebarOpen)}>
             SUPPORT
-          </div>
-          <div className="side-menu-item"
+          </Link>
+          <Link className="side-menu-item"  to={'/contact'}
                onClick={this.onSetSidebarOpen.bind(this, !this.state.sidebarOpen)}>
             TERMS OF SERVICE
-          </div>
-          <div className="side-menu-item"
+          </Link>
+          <Link className="side-menu-item"  to={'/contact'}
                onClick={this.onSetSidebarOpen.bind(this, !this.state.sidebarOpen)}>
             PRIVACY POLICY
-          </div>
+          </Link>
         </div>
         <div className="side-footer">
-          <button>LOG OUT</button>
+          <button onClick={this.logOut.bind(this)}>LOG OUT</button>
         </div>
       </div>;
 
@@ -165,12 +172,11 @@ class App extends React.Component {
               */}
                 <CSSTransition key={location.key} classNames="fade" timeout={300}>
                   <Switch location={location}>
-                    <Route exact name="index" path="/" component={Index}/>
+                    <RoutePublic exact name="index" path="/" component={Index}  {...this.props} onSetOpen={this.onSetSidebarOpen} open={this.state.sidebarOpen} {...this.props}/>
                     <RoutePublic exact name="login" path="/login" component={Login} {...this.props}/>
-                    <RoutePublic exact name="login" path="/login-selection" component={LoginSelection} {...this.props}/>
                     <RoutePublic exact name="sign up" path="/sign-up" component={SignUp} {...this.props}/>
                     <RoutePublic exact name="sign up" path="/sign-up-selection" component={SignUpSelection} {...this.props}/>
-                    <RoutePublic exact name="main" path="/main" component={Main} onSetOpen={this.onSetSidebarOpen} open={this.state.sidebarOpen} {...this.props}/>
+                    <RoutesAuthenticated exact name="main" path="/main" component={Main} onSetOpen={this.onSetSidebarOpen} open={this.state.sidebarOpen} {...this.props}/>
                     <RoutePublic exact name="profile" path="/profile" component={Profile} onSetOpen={this.onSetSidebarOpen} open={this.state.sidebarOpen} {...this.props}/>
                   </Switch>
                 </CSSTransition>
