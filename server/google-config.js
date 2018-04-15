@@ -3,7 +3,7 @@ const google = {
   // Use oAuth credentials of web application/client here, for oAuth from web browser.
   // see https://github.com/sujith3g/meteor-g-plus/blob/master/public/screnshots/create.png
 
-  clientId: "825480306969-uglck4esst2m4urn33fl92qb5mjkbiih.apps.googleusercontent.com",
+  clientId: "com.googleusercontent.apps.825480306969-uglck4esst2m4urn33fl92qb5mjkbiih",
   clientSecret: "nbOQex6czCH-pZZw4WJsvE8I"
 
 };
