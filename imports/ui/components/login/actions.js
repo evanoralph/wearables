@@ -5,7 +5,7 @@ export default {
       history.push("/main");
     });
   },
-  loginWithFacebook(){
+  loginWithFacebook({Meteor},history){
     Meteor.loginWithFacebook({
       loginStyle: "popup" ,
       requestPermissions: ['email']
@@ -14,9 +14,10 @@ export default {
         alert("error when login with facebook " + err);
         return;
       }
+      history.push("/main")
     });
   },
-  userLoginGoogle({Meteor}){
+  userLoginGoogle({Meteor},history){
 
     if (Meteor.isCordova) { // signIn through cordova
       Meteor.loginWithGoogle({
@@ -30,6 +31,7 @@ export default {
 
       }, (error) => {
         if (error) alert(error);
+        
         history.push("/main");
       });
       // Meteor.cordova_g_plus({

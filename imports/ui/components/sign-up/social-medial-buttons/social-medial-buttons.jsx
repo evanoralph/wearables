@@ -7,11 +7,11 @@ class SocialMediaButton extends React.Component {
 
 
   userLoginGoogle(){
-    this.props.userLoginGoogle()
+    this.props.userLoginGoogle(this.props.history)
   }
 
   loginWithFacebook(){
-    this.props.loginWithFacebook()
+    this.props.loginWithFacebook(this.props.history)
   }
 
   render() {

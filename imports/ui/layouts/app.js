@@ -205,6 +205,7 @@ class App extends React.Component {
 
 function composer(props, onData) {
   const loggingIn = Meteor.loggingIn();
+  console.log(props)
   onData(null, {
     loggingIn,
     authenticated: !loggingIn && !!Meteor.userId(),

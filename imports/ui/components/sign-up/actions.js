@@ -20,7 +20,7 @@ export default {
       alert("log!!")
     });
   },
-  userLoginGoogle({Meteor}){
+  userLoginGoogle({Meteor},history){
 
     if (Meteor.isCordova) { // signIn through cordova
       // Meteor.cordova_g_plus({
@@ -43,6 +43,8 @@ export default {
 
       }, (error) => {
         if (error) alert(error);
+        
+        history.push("/main")
       });
     } else { // signIn through browser
       if (Accounts.loginServicesConfigured()) {

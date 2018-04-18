@@ -37,7 +37,7 @@ class LoginForm extends React.Component {
             <MyValidationInput type="text"  name='email' placeholder="email" validations={[required]}/>
             <MyValidationInput type='password' name='password' placeholder="password" validations={[required]}/>
             <Button>LOG IN</Button>
-            <SocialMediaLogin/>
+            <SocialMediaLogin history={this.props.history}/>
           </div>
       </Form>
     ) ;

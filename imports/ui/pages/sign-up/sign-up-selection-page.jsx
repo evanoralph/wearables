@@ -12,7 +12,7 @@ class SignUpSelectionPage extends React.Component {
           <div className="image-container">
 
           </div>
-          <SocialMediaButtons/>
+          <SocialMediaButtons history={this.props.history}/>
         </div>
       </section>
     )
