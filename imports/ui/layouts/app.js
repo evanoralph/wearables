@@ -79,23 +79,23 @@ class App extends React.Component {
           <span className="sidebar-title">SETTINGS</span>
         </div>
         <div className="side-menu">
-          <Link className="side-menu-item" to={'/contact'}
+          <Link className="side-menu-item" to={'/main'}
                onClick={this.onSetSidebarOpen.bind(this, !this.state.sidebarOpen)}>
             CONTACT SETTINGS
           </Link>
-          <Link className="side-menu-item" to="/profile"
+          <Link className="side-menu-item" to="/main"
                onClick={this.onSetSidebarOpen.bind(this, !this.state.sidebarOpen, "/profile")}>
             MY PROFILE
           </Link>
-          <Link className="side-menu-item"  to={'/contact'}
+          <Link className="side-menu-item"  to={'/main'}
                onClick={this.onSetSidebarOpen.bind(this, !this.state.sidebarOpen)}>
             SUPPORT
           </Link>
-          <Link className="side-menu-item"  to={'/contact'}
+          <Link className="side-menu-item"  to={'/main'}
                onClick={this.onSetSidebarOpen.bind(this, !this.state.sidebarOpen)}>
             TERMS OF SERVICE
           </Link>
-          <Link className="side-menu-item"  to={'/contact'}
+          <Link className="side-menu-item"  to={'/main'}
                onClick={this.onSetSidebarOpen.bind(this, !this.state.sidebarOpen)}>
             PRIVACY POLICY
           </Link>

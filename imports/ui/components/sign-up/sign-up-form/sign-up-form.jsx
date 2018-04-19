@@ -52,7 +52,7 @@ class SignUpForm extends React.Component {
     const form = document.querySelector("#sign-up-form");
     const formData = serialize(form, {hash: true});
     console.log(formData);
-    this.props.register(formData);
+    this.props.register(formData,this.props.history);
   }
 
   // Update the value in response to user picking event

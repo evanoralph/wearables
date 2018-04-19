@@ -10,7 +10,7 @@ class SignUpPage extends React.Component {
     return(
       <section id="sign-up-page" className="page-container row no-padding no-margin">
         <HeaderNav title="SIGN UP" path="/sign-up-selection"/>
-        <SignUpForm/>
+        <SignUpForm history={this.props.history}/>
       </section>
     )
   }

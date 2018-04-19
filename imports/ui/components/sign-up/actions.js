@@ -1,11 +1,12 @@
 import {browserHistory} from 'react-router';
 
 export default {
-  register({Meteor},data){
+  register({Meteor},data,history){
     console.log(data);
     Meteor.call('users.add',data,(err,response)=>{
       console.log(err,response);
       alert("register");
+      history.push("/login");
     })
   },
   loginWithFacebook(){
