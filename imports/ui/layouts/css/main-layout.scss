@@ -10,6 +10,19 @@ body {
   }
 }
 
+//iPhone X FIXES
+body {
+  padding-top: constant(safe-area-inset-top); /* iOS 11.0 */
+  padding-top: env(safe-area-inset-top); /* iOS 11.2 */
+}
+
+.footer-iphone-x {
+  margin-bottom: constant(safe-area-inset-bottom); /* iOS 11.0 */
+  margin-bottom: env(safe-area-inset-bottom); /* iOS 11.2 */
+}
+// END iPhone X Fixes
+
+
 div, form, table {
   -webkit-overflow-scrolling: touch !important;
 }
