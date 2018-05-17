@@ -28,7 +28,7 @@
     width: 85%;
     text-align: center;
     .button-item{
-      background: red;
+      background: #726D6D;
       height: 50px;
       width: 50px;
       border-radius: 50px;
@@ -42,4 +42,17 @@
     width: 85%;
     margin: 0 auto;
   }
+}
+
+button.swal2-confirm {
+  background: #726D6D !important;
+  letter-spacing: 3px;
+  color: #FCCBBB !important;
+  border-radius: 30px;
+}
+button.swal2-cancel {
+  background: #FFF !important;
+  letter-spacing: 3px;
+  color: #797575 !important;
+  border-radius: 30px;
 }

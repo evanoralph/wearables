@@ -41,8 +41,8 @@ div, form, table {
   margin-left:0px !important;
 }
 
-*:focus{
-  outline: none;
+*:focus, *{
+  outline: none !important;
 }
 
 a {
