@@ -25,6 +25,7 @@ import SignUp from '../pages/sign-up/sign-up-page'
 import SignUpSelection from '../pages/sign-up/sign-up-selection-page'
 import LoginSelection from '../pages/login/login-selection-page'
 import Profile from '../pages/profile-page/profile-page';
+import Imports from '../pages/imports/imports';
 
 class App extends React.Component {
 
@@ -189,6 +190,7 @@ class App extends React.Component {
                     <RoutePublic exact name="sign up" path="/sign-up" component={SignUp} {...this.props}/>
                     <RoutePublic exact name="sign up" path="/sign-up-selection" component={SignUpSelection} {...this.props}/>
                     <RoutesAuthenticated exact name="main" path="/main" component={Main} onSetOpen={this.onSetSidebarOpen} open={this.state.sidebarOpen} {...this.props}/>
+                    <RoutePublic exact name="main" path="/imports" component={Imports} onSetOpen={this.onSetSidebarOpen} open={this.state.sidebarOpen} {...this.props}/>
                     <RoutePublic exact name="profile" path="/profile" component={Profile} onSetOpen={this.onSetSidebarOpen} open={this.state.sidebarOpen} {...this.props}/>
                   </Switch>
                 </CSSTransition>

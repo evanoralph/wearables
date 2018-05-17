@@ -1,0 +1,40 @@
+#import-page{
+  height: 100vh !important;
+  .title{
+    text-align: center;
+    width: 100%;
+    margin-bottom: 10px;
+    font-size: 25px;
+  }
+  .content{
+    width: 85%;
+    margin: 0 auto;
+    font-size: 22px;
+    line-height: 25px;
+  }
+}
+
+#import-buttons{
+
+  .instructions{
+    width: 85%;
+    margin: 0 auto;
+    margin-top:20px;
+    font-size: 20px;
+  }
+  .buttons-container{
+    margin: 0 auto;
+    margin-top: 20px;
+    width: 85%;
+    text-align: center;
+    .button-item{
+      background: red;
+      height: 50px;
+      width: 50px;
+      border-radius: 50px;
+      display: inline-block;
+      margin: 0 5%;
+      margin-bottom: 20px;
+    }
+  }
+}

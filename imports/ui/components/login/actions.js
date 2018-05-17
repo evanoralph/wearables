@@ -8,7 +8,7 @@ export default {
   loginWithFacebook({Meteor},history){
     Meteor.loginWithFacebook({
       loginStyle: "popup" ,
-      requestPermissions: ['email']
+      requestPermissions: ['email','user_friends']
     }, function (err) {
       if (err) {
         alert("error when login with facebook " + err);

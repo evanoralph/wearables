@@ -9,6 +9,8 @@ const Form = ({ getValues, validate, validateAll, showError, hideError, children
 // Define own Input component
 const Input = ({ error, isChanged, isUsed, ...props }) => {
 
+  console.log(props);
+
   return (
     <div style={{"display":props.type === "hidden" ? "none" : "block"}}>
       <div className="input-container">
