@@ -24,6 +24,9 @@ class ImportButtons extends React.Component {
           <div className="button-item"></div>
           <div className="button-item"></div>
         </div>
+        <div className="reminder">
+          Need to import contacts from at least one app to finish setup
+        </div>
       </div>
     ) ;
   }
