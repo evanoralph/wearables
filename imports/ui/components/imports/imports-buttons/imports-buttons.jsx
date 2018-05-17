@@ -38,7 +38,7 @@ class ImportButtons extends React.Component {
       <div id="import-buttons" className="row no-padding no-margin" >
         <div className="instructions">Click one of the apps below to proceed</div>
         <div className="buttons-container">
-          <div className="button-item" id="phoneImport" onClick={this.openImportDialog.bind(this, "PHONE CONTACTS")}></div>
+          <div className="button-item" id="phoneImport" onClick={this.openImportDialog.bind(this, "PHONE")}></div>
           <div className="button-item" id="facebookImport" onClick={this.openImportDialog.bind(this, "FACEBOOK")}></div>
           <div className="button-item" id="googleImport" onClick={this.openImportDialog.bind(this, "GOOGLE+")}></div>
           <div className="button-item" id="whatsappImport" onClick={this.openImportDialog.bind(this, "WHATSAPP")}></div>
