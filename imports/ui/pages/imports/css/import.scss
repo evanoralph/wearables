@@ -1,15 +1,17 @@
 #import-page{
   height: 100vh !important;
+  letter-spacing: 1px;
+  color: #2A2828;
   .title{
     text-align: center;
     width: 100%;
     margin-bottom: 10px;
-    font-size: 25px;
+    font-size: 22px;
   }
   .content{
-    width: 85%;
+    width: 75%;
     margin: 32px auto;
-    font-size: 22px;
+    font-size: 18px;
     line-height: 25px;
   }
 }
@@ -17,30 +19,38 @@
 #import-buttons{
 
   .instructions{
-    width: 85%;
+    width: 75%;
     margin: 0 auto;
     margin-top:20px;
-    font-size: 20px;
+    font-size: 18px;
+    color: #2A2828;
   }
   .buttons-container{
-    margin: 0 auto;
-    margin-top: 20px;
+    margin: 20px auto;
     width: 85%;
     text-align: center;
-    .button-item{
-      background: #726D6D;
-      height: 50px;
-      width: 50px;
-      border-radius: 50px;
+    .button-grid {
+      width: 33%;
+      margin: 20px 0px;
       display: inline-block;
-      margin: 14px 5%;
-      margin-bottom: 20px;
-      box-shadow: 1px 3px 5px;
+      .button-item {
+        background-color: #726D6D;
+        height: 50px;
+        width: 50px;
+        border-radius: 50px;
+        display: inline-block;
+        box-shadow: 1px 2px 5px rgba(0,0,0,0.5);
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: center;
+      }
     }
   }
   .reminder{
-    width: 85%;
+    width: 75%;
     margin: 0 auto;
+    font-size: 18px;
+    color: #2A2828;
   }
 }
 
@@ -55,4 +65,34 @@ button.swal2-cancel {
   letter-spacing: 3px;
   color: #797575 !important;
   border-radius: 30px;
+}
+
+
+#phoneImport {
+  &.android {
+    background-image: url('/img/import-icons/android.svg');
+  }
+  &.iphone {
+    background-image: url('/img/import-icons/iphone.svg');
+  }
+}
+
+#facebookImport {
+  background-image: url('/img/import-icons/facebook.svg')
+}
+
+#googleImport {
+  background-image: url('/img/import-icons/googleplus.svg')
+}
+
+#linkedinImport {
+  background-image: url('/img/import-icons/linkedin.svg')
+}
+
+#whatsappImport {
+  background-image: url('/img/import-icons/whatsapp.svg')
+}
+
+#twitterImport {
+  background-image: url('/img/import-icons/twitter.svg')
 }
