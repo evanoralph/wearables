@@ -6,12 +6,10 @@ class Imports extends React.Component {
 
   constructor(props) {
     super(props);
-    console.log(props);
     this.state = {
       showHeader: true,
       currentUser: props.currentUser,
     }
-
   }
 
   render() {

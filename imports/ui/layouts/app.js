@@ -74,13 +74,13 @@ class App extends React.Component {
 
   render() {
 
-    var SideMenu =
+    const SideMenu =
       <div id="sideNav">
         <div className="side-header">
           <span className="sidebar-title">SETTINGS</span>
         </div>
         <div className="side-menu">
-          <Link className="side-menu-item" to={'/main'}
+          <Link className="side-menu-item" to={'/imports'}
                onClick={this.onSetSidebarOpen.bind(this, !this.state.sidebarOpen)}>
             CONTACT SETTINGS
           </Link>
@@ -110,14 +110,14 @@ class App extends React.Component {
       root: {
         //display: classNames({"none": !this.state.showHeader}),
         position: 'absolute',
-        top: 20,
+        top: 0,
         left: 0,
         right: 0,
         bottom: 0,
         overflow: 'hidden',
         pointerEvents: 'none',
         zIndex: 1001,
-        height: 'calc(100vh - 20px) !important',
+        height: "100vh",
       },
       sidebar: {
         zIndex: 2,
@@ -190,7 +190,7 @@ class App extends React.Component {
                     <RoutePublic exact name="sign up" path="/sign-up" component={SignUp} {...this.props}/>
                     <RoutePublic exact name="sign up" path="/sign-up-selection" component={SignUpSelection} {...this.props}/>
                     <RoutesAuthenticated exact name="main" path="/main" component={Main} onSetOpen={this.onSetSidebarOpen} open={this.state.sidebarOpen} {...this.props}/>
-                    <RoutePublic exact name="main" path="/imports" component={Imports} onSetOpen={this.onSetSidebarOpen} open={this.state.sidebarOpen} {...this.props}/>
+                    <RoutesAuthenticated exact name="main" path="/imports" component={Imports} onSetOpen={this.onSetSidebarOpen} open={this.state.sidebarOpen} {...this.props}/>
                     <RoutePublic exact name="profile" path="/profile" component={Profile} onSetOpen={this.onSetSidebarOpen} open={this.state.sidebarOpen} {...this.props}/>
                   </Switch>
                 </CSSTransition>
