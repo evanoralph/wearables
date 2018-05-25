@@ -20,6 +20,18 @@ Meteor.startup(() => {
     secret: google.clientSecret
   });
 
+  Accounts.loginServiceConfiguration.upsert(
+    { service: 'linkedin' },
+    {
+      $set: {
+        loginStyle: "redirect",
+        clientId: "81xzymrc69mmsj",
+        secret: "ZtD1UxBUnLGcgJbZ",
+        redirect_uri: "http://localhost:3000/imports",
+      }
+    }
+  );
+
 });
 
 Accounts.config({

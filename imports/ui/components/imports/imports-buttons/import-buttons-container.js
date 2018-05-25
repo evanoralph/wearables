@@ -9,6 +9,7 @@ function composer (props, onData ) {
 
 const depsToPropsMapper = (context, actions) => ({
   context:context,
+  loginWithLinkedin: actions.importButton.loginWithLinkedin,
 });
 
 export default merge(
