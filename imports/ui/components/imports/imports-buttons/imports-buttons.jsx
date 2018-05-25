@@ -2,6 +2,8 @@ import React from 'react';
 import {connect} from 'react-redux';
 import swal from 'sweetalert2';
 
+import Linkedin from 'node-linkedin';
+
 class ImportButtons extends React.Component {
 
 
@@ -24,7 +26,23 @@ class ImportButtons extends React.Component {
           reverseButtons: true,
       }).then((result) => {
           if (result.value) {
-              this.props.loginWithLinkedin();
+
+            switch (network) {
+
+              case "LINKEDIN":
+                  this.props.loginWithLinkedin((res)=>{
+                    Meteor.call('linkedin.fetch', this.props.user.services.linkedin.accessToken, (err,res)=>{
+                      console.log(err, res)
+                    })
+                  });
+
+              break;
+              default:
+                return null;
+              break;
+
+            }
+
           }
       })
   }
