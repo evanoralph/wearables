@@ -2,7 +2,7 @@ export default {
     loginWithLinkedin(){
         Meteor.loginWithLinkedin({
             loginStyle: "popup" ,
-            requestPermissions: ['r_basicprofile', 'r_network', 'r_compliance'],
+            requestPermissions: ['r_basicprofile'],
             clientId: "81xzymrc69mmsj",
             secret: "ZtD1UxBUnLGcgJbZ"
         }, function (err, res) {
