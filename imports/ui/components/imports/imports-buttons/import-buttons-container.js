@@ -9,6 +9,7 @@ function composer (props, onData ) {
 
 const depsToPropsMapper = (context, actions) => ({
   context:context,
+  importPhoneContacts:actions.importButton.importPhoneContacts
 });
 
 export default merge(

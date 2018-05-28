@@ -23,13 +23,7 @@ class ImportButtons extends React.Component {
           cancelButtonText: 'CANCEL',
           reverseButtons: true,
       }).then((result) => {
-          // if (result.value) {
-          //     swal(
-          //         'Deleted!',
-          //         'Your file has been deleted.',
-          //         'success'
-          //     )
-          // }
+        this.props.importPhoneContacts();
       })
   }
 

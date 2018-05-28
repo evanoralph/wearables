@@ -1,5 +1,6 @@
 NotificationListener-cordova@https://github.com/dsmalicsi/NotificationListener-cordova.git#255126d926beb49e33500538ee1d9b05534f11d6
 cordova-android-disable-aapt2@https://github.com/runtrizapps/cordova-android-disable-aapt2.git#6ee2462e3b95e76a969eb121de746903e55cdc4d
+cordova-plugin-contacts@3.0.1
 cordova-plugin-facebook4@1.9.1
 cordova-plugin-splashscreen@4.1.0
 cordova-plugin-statusbar@2.3.0
