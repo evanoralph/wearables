@@ -1,3 +1,4 @@
+import swal from 'sweetalert2'
 
 export default {
   login({Meteor},data,history){
@@ -11,7 +12,7 @@ export default {
       requestPermissions: ['email','user_friends']
     }, function (err) {
       if (err) {
-        alert("error when login with facebook " + err);
+        swal("error when login with facebook " + err);
         return;
       }
       history.push("/main")

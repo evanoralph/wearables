@@ -130,7 +130,7 @@ class App extends React.Component {
         willChange: 'transform',
         overflowY: 'auto',
         backgroundColor: '#F6F4F0',
-        height: 'calc(100vh - 20px)',
+        height: 'calc(100vh)',
         padding: '0px',
         pointerEvents: 'auto',
         overflow: 'hidden',
@@ -179,11 +179,6 @@ class App extends React.Component {
           <Route render={({ location }) => (
             <div id="app-container">
               <TransitionGroup>
-                {/* no different than other usage of
-                  CSSTransition, just make sure to pass
-                  `location` to `Switch` so it can match
-                  the old location as it animates out
-              */}
                 <CSSTransition key={location.key} classNames="fade" timeout={300}>
                   <Switch location={location}>
                     <RoutePublic exact name="index" path="/" component={Index}  {...this.props} onSetOpen={this.onSetSidebarOpen} open={this.state.sidebarOpen} {...this.props}/>

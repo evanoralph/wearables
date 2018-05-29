@@ -15,15 +15,9 @@ class Imports extends React.Component {
 
   render() {
     return(
-      <div id="import-page" className="page-container row  middle-xs no-padding no-margin">
-        <div className="wrapper">
-          <HeaderNav title="IMPORT CONTACTS" path="/sign-up-selection"/>
-          <div className="content">
-            Import your contacts so you can select the key people in your life.
-            The jewelry will vibrate whenever they reach out to you.
-          </div>
+      <div id="import-page" className="page-container row no-padding no-margin">
+        <HeaderNav title="IMPORT CONTACTS" path="/sign-up-selection"/>
           <ImportButtons/>
-        </div>
       </div>
     )
   }
