@@ -2,6 +2,9 @@
   height: 100vh !important;
   letter-spacing: 1px;
   color: #2A2828;
+  .wrapper {
+    width: 100%;
+  }
   .title{
     text-align: center;
     width: 100%;
@@ -14,6 +17,74 @@
     font-size: 18px;
     line-height: 25px;
   }
+  .contacts-title{
+    width: 100%;
+    margin: 10px auto;
+    font-weight: 100;
+    font-size: 22px;
+    line-height: 25px;
+    text-align: center;
+  }
+}
+
+#contacts-container {
+  height: calc(100% - 65px - 10vh);
+
+  .contacts-list {
+    height: calc(100% - 50px);
+
+    .contact-item {
+      height: 50px;
+      border-top: 1px solid #FFF;
+      border-bottom: 1px solid #FFF;
+      padding-left: 25px;
+      color: #FFF;
+      font-size: 20px;
+      line-height: 50px;
+      font-weight: normal;
+      background-color: #DDB2B2;
+
+      &.active {
+        background-color: #797575;
+      }
+
+    }
+
+  }
+
+  .contacts-navigation {
+    height: 50px;
+    width: 100%;
+    padding-top: 5px;
+
+    .alpha-sort {
+      width: 40px;
+      height: 40px;
+      border-radius: 50px;
+      color: #797575;
+      margin-left: -10px;
+      float: left;
+      text-align: center;
+      line-height: 40px;
+      overflow-x: scroll;
+
+
+      &:first-child {
+        margin-left: 5px;
+      }
+      &:last-child {
+        margin-right: 10px;
+      }
+
+      &.active {
+        color: #FFF;
+        background-color: #797575;
+      }
+
+    }
+
+  }
+
 }
 
 #import-buttons{
