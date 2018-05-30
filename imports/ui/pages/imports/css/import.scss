@@ -14,7 +14,7 @@
   }
   .content{
     width: 75%;
-    margin: 30px auto;
+    margin: 32px auto;
     font-size: 18px;
     line-height: 25px;
   }
@@ -26,66 +26,6 @@
     line-height: 25px;
     text-align: center;
   }
-}
-
-#contacts-container {
-  height: calc(100% - 65px - 10vh);
-
-  .contacts-list {
-    height: calc(100% - 50px);
-
-    .contact-item {
-      height: 50px;
-      border-top: 1px solid #FFF;
-      border-bottom: 1px solid #FFF;
-      padding-left: 25px;
-      color: #FFF;
-      font-size: 20px;
-      line-height: 50px;
-      font-weight: normal;
-      background-color: #DDB2B2;
-
-      &.active {
-        background-color: #797575;
-      }
-
-    }
-
-  }
-
-  .contacts-navigation {
-    height: 50px;
-    width: 100%;
-    padding-top: 5px;
-
-    .alpha-sort {
-      width: 40px;
-      height: 40px;
-      border-radius: 50px;
-      color: #797575;
-      margin-left: -10px;
-      float: left;
-      text-align: center;
-      line-height: 40px;
-      overflow-x: scroll;
-
-
-      &:first-child {
-        margin-left: 5px;
-      }
-      &:last-child {
-        margin-right: 10px;
-      }
-
-      &.active {
-        color: #FFF;
-        background-color: #797575;
-      }
-
-    }
-
-  }
-
 }
 
 #import-buttons{
@@ -131,6 +71,7 @@ button.swal2-confirm {
   letter-spacing: 3px;
   color: #FCCBBB !important;
   border-radius: 30px;
+  width: 100%;
 }
 button.swal2-cancel {
   background: #FFF !important;

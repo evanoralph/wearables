@@ -4,7 +4,7 @@ import getTrackerLoader from '../../../../lib/getTrackerLoader';
 import { useDeps } from 'react-simple-di-extra';
 
 function composer (props, onData ) {
-  onData(null, {});
+  onData(null, {history:props.history});
 }
 
 const depsToPropsMapper = (context, actions) => ({

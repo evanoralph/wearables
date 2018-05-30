@@ -1,12 +1,30 @@
 import {browserHistory} from 'react-router';
+import swal from 'sweetalert2';
+
 
 export default {
   register({Meteor},data,history){
     console.log(data);
     Meteor.call('users.add',data,(err,response)=>{
       console.log(err,response);
-      alert("register");
-      history.push("/login");
+
+      if(err){
+        swal({
+          text:err
+        })
+      }
+
+      if(response.userId){
+        swal({text:"Registration Successful"});
+        Meteor.loginWithPassword(data.email, data.password,(loginErr)=>{
+          if(loginErr){
+            swal({
+              text:"error login please try again"
+            })
+          }
+          history.push("/main");
+        });
+      }
     })
   },
   loginWithFacebook(){
@@ -33,7 +51,7 @@ export default {
         requestPermissions: ['email', 'profile'],
 
       }, (error) => {
-        if (error) alert(error);
+        if (error) swal({text:error});
         
         history.push("/main")
       });
@@ -49,7 +67,7 @@ export default {
           requestPermissions: ['email', 'profile'],
 
         }, (error) => {
-          if (error) alert(error);
+          if (error) swal({text:error});
         });
       }
     }

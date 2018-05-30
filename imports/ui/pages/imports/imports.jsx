@@ -17,7 +17,7 @@ class Imports extends React.Component {
     return(
       <div id="import-page" className="page-container row no-padding no-margin">
         <HeaderNav title="IMPORT CONTACTS" path="/sign-up-selection"/>
-          <ImportButtons/>
+          <ImportButtons  history={this.props.history} />
       </div>
     )
   }

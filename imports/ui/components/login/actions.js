@@ -3,6 +3,11 @@ import swal from 'sweetalert2'
 export default {
   login({Meteor},data,history){
     Meteor.loginWithPassword(data.email, data.password, function (loginErr) {
+      if(loginErr){
+        swal({
+          text:"error login please try again"
+        })
+      }
       history.push("/main");
     });
   },

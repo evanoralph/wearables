@@ -10,12 +10,26 @@ Meteor.methods({
 
     Contacts.remove({});
     contacts.forEach((contact)=>{
-      const info = {
-        name: contact.name.givenName,
-        alternateName: contact.name.formatted,
-      }
 
-      console.log(info,"xx");
+
+      //   lastName: "Armstrong",
+      //   firstName: "Craig",
+      //   company: "Cedar Sinai",
+      //   job: "Doctor",
+      //   location: "North Wing",
+      //   alternateName: "Dr. K. Hollister",
+
+      const info = {
+        firstName: contact.name.givenName,
+        lastName: contact.name.familyName,
+        alternateName: contact.name.formatted,
+        addresses:contact.addresses,
+        emails:contact.emails,
+        organizations:contact.organizations,
+      };
+      
+
+      console.log(contact,"xx");
       Contacts.insert({userId,platform:"phone",info,dateUpdated:new Date()});
     });
 
