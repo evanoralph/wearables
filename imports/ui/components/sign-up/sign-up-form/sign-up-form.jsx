@@ -111,12 +111,13 @@ class SignUpForm extends React.Component {
   render() {
 
     return (
-      <div className="sign-up-form-container row-fluid no-margin">
+      <div className="sign-up-form-container row-fluid no-margin" >
         <Form
           ref={c => { this.form = c }}
           onSubmit={this.signUp.bind(this)}
           id="sign-up-form"
           className="row no-margin"
+          style={{['-webkit-overflow-scrolling']: this.state.pickerStatus ? "auto" : "touch"}}
         >
           <div className="col-xs-12 no-padding">
             <MyValidationInput type="text" name='firstName' placeholder="first name" validations={[required]}/>
