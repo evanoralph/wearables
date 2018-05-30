@@ -9,7 +9,7 @@ class ContactsList extends React.Component {
   render() {
     return(
       <div id="contacts-container" className="page-container row no-padding no-margin">
-        <HeaderNav img="img/import-icons/android.svg" path="/sign-up-selection" doneButton={true}/>
+        <HeaderNav img="img/import-icons/android.svg" path="/imports" doneButton={true}/>
         <List/>
       </div>
     )

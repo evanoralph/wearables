@@ -23,7 +23,9 @@ class ImportButtons extends React.Component {
           cancelButtonText: 'CANCEL',
           reverseButtons: true,
       }).then((result) => {
-        this.props.importPhoneContacts(this.props.history);
+        if(result.value === true) {
+          this.props.importPhoneContacts(this.props.history);
+        }
       })
   }
 

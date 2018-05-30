@@ -1,5 +1,6 @@
 .sign-up-form-container {
   width: 100%;
+  -webkit-overflow-scrolling: touch;
   #sign-up-form {
     .error {
       color: red;

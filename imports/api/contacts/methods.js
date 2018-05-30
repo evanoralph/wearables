@@ -11,17 +11,9 @@ Meteor.methods({
     Contacts.remove({});
     contacts.forEach((contact)=>{
 
-
-      //   lastName: "Armstrong",
-      //   firstName: "Craig",
-      //   company: "Cedar Sinai",
-      //   job: "Doctor",
-      //   location: "North Wing",
-      //   alternateName: "Dr. K. Hollister",
-
       const info = {
         firstName: contact.name.givenName,
-        lastName: contact.name.familyName,
+        lastName: contact.name.familyName || contact.name.givenName,
         alternateName: contact.name.formatted,
         addresses:contact.addresses,
         emails:contact.emails,
