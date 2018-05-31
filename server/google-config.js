@@ -20,6 +20,16 @@ Meteor.startup(() => {
     secret: google.clientSecret
   });
 
+  Accounts.loginServiceConfiguration.remove({
+    service: "twitter"
+  });
+
+  Accounts.loginServiceConfiguration.insert({
+    service: "twitter",
+    consumerKey: "HOvTG1Y5ju72jYsZH5yJSw869",
+    secret: "3cYwguzD5HPaA8RLtzdqnQrM0WSX0UJOzsbLMTkaKXnIDhQV35"
+  });
+
 });
 
 Accounts.config({

@@ -22,6 +22,15 @@ export default {
       }
       history.push("/main")
     });
+    // Meteor.loginWithTwitter({
+    //   requestPermissions: ['basic'] // cu
+    // }, function (err) {
+    //   if (err) {
+    //     swal("error when login with facebook " + err);
+    //     return;
+    //   }
+    //   history.push("/main")
+    // });
   },
   userLoginGoogle({Meteor},history){
 

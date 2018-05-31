@@ -6,7 +6,7 @@ import { Contacts } from './contacts.js';
 
 Meteor.methods({
   'contact.import.phone'(contacts) {
-    const userId = this.userId;
+    const {userId} = this;
 
     Contacts.remove({});
     contacts.forEach((contact)=>{
@@ -19,11 +19,13 @@ Meteor.methods({
         emails:contact.emails,
         organizations:contact.organizations,
       };
-      
 
-      console.log(contact,"xx");
       Contacts.insert({userId,platform:"phone",info,dateUpdated:new Date()});
     });
 
   },
+  'contact.update.key'(_id){
+    const {userId} = this;
+    Contacts.update({_id},{})
+  }
 });
