@@ -31,4 +31,21 @@ export default {
       }
     });
   },
+  loginWithTwitter({Meteor}, callback) {
+    Meteor.linkWithTwitter({
+      loginStyle: "popup",
+      clientId: "HOvTG1Y5ju72jYsZH5yJSw869",
+      secret: "3cYwguzD5HPaA8RLtzdqnQrM0WSX0UJOzsbLMTkaKXnIDhQV35",
+    }, function (err, res) {
+      console.log("Twitter login status:", err, res);
+      if (err) {
+        console.log("Error Linkedin", err);
+        alert("Error logging in with LinkedIn " + err);
+        return;
+      } else {
+        console.log("Success Twitter", res);
+        callback(res);
+      }
+    });
+  },
 }

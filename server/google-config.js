@@ -10,15 +10,16 @@ const google = {
 
 Meteor.startup(() => {
 
-  Accounts.loginServiceConfiguration.remove({
-    service: "google"
-  });
-
-  Accounts.loginServiceConfiguration.insert({
-    service: "google",
-    clientId: google.clientId,
-    secret: google.clientSecret
-  });
+  Accounts.loginServiceConfiguration.upsert(
+    { service: "google" },
+    {
+      $set: {
+        service: "google",
+        clientId: google.clientId,
+        secret: google.clientSecret
+      }
+    }
+  );
 
   Accounts.loginServiceConfiguration.upsert(
     { service: 'linkedin' },
@@ -32,15 +33,18 @@ Meteor.startup(() => {
     }
   );
 
-  Accounts.loginServiceConfiguration.remove({
-    service: "twitter"
-  });
-
-  Accounts.loginServiceConfiguration.insert({
-    service: "twitter",
-    consumerKey: "HOvTG1Y5ju72jYsZH5yJSw869",
-    secret: "3cYwguzD5HPaA8RLtzdqnQrM0WSX0UJOzsbLMTkaKXnIDhQV35"
-  });
+  Accounts.loginServiceConfiguration.upsert(
+    { service: 'twitter' },
+    {
+      $set: {
+        loginStyle: "redirect",
+        service: "twitter",
+        consumerKey: "HOvTG1Y5ju72jYsZH5yJSw869",
+        secret: "3cYwguzD5HPaA8RLtzdqnQrM0WSX0UJOzsbLMTkaKXnIDhQV35",
+        redirect_uri: "http://localhost:3000/imports",
+      }
+    }
+  );
 
 });
 

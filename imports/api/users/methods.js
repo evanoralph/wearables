@@ -1,6 +1,7 @@
 import { Meteor } from 'meteor/meteor';
 import { check } from 'meteor/check';
 import Linkedin from 'node-linkedin';
+import Twitter from 'twitter';
 
 Meteor.methods({
   'users.add'(data) {
@@ -36,5 +37,29 @@ Meteor.methods({
 
     }
 
+  },
+  'twitter.fetch'(accessToken, accessTokenSecret, userId){
+    if (Meteor.isServer) {
+      return new Promise((resolve, reject) => {
+        const twitter = new Twitter({
+          consumer_key: Meteor.settings.twitter.consumerKey,
+          consumer_secret: Meteor.settings.twitter.secret,
+          access_token_key: accessToken,
+          access_token_secret: accessTokenSecret
+        });
+
+        let params = {user_id: userId, count: 200, skip_status: true, include_user_entities: false};
+        twitter.get('friends/list', params, (err, list, res) => {
+          if (!!err) {
+            reject(err);
+          }
+          else {
+            resolve({err, list, res});
+          }
+        });
+
+
+      })
+    }
   }
 });

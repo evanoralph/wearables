@@ -24,8 +24,9 @@ function composer (props, onData ) {
 
 const depsToPropsMapper = (context, actions) => ({
   context:context,
-  importPhoneContacts:actions.importButton.importPhoneContacts
+  importPhoneContacts:actions.importButton.importPhoneContacts,
   loginWithLinkedin: actions.importButton.loginWithLinkedin,
+  loginWithTwitter: actions.importButton.loginWithTwitter,
 });
 
 export default merge(

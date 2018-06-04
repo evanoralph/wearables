@@ -15,6 +15,10 @@ class ImportButtons extends React.Component {
     this.props.userLoginGoogle();
   }
 
+  handleTwitterFriends(err, tweet, res) {
+    console.log(err, tweet, res)
+  }
+
   openImportDialog(network) {
       swal({
           text: `IMPORT ${network} CONTACTS`,
@@ -39,6 +43,17 @@ class ImportButtons extends React.Component {
               case "PHONE":
                 this.props.importPhoneContacts(this.props.history);
                 break;
+              case "TWITTER":
+                this.props.loginWithTwitter((res)=>{
+                  console.log("TWITTER LOGIN RESULT:", res);
+                  Meteor.callPromise('twitter.fetch',
+                    this.props.user.services.twitter.accessToken,
+                    this.props.user.services.twitter.accessTokenSecret,
+                    this.props.user.services.twitter.id).then((err, list, res) =>{
+                      console.log(err, list, res)
+                  })
+                });
+                break;
               default:
                 this.props.importPhoneContacts(this.props.history);
                 break;
@@ -47,6 +62,7 @@ class ImportButtons extends React.Component {
           }
       })
   }
+
 
   render() {
     return(
