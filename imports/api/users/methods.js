@@ -1,7 +1,9 @@
-import { Meteor } from 'meteor/meteor';
-import { check } from 'meteor/check';
+import {Meteor} from 'meteor/meteor';
+import {check} from 'meteor/check';
 import Linkedin from 'node-linkedin';
 import Twitter from 'twitter';
+import {Contacts} from '../contacts/contacts.js';
+import Fibers from 'fibers'
 
 Meteor.methods({
   'users.add'(data) {
@@ -10,9 +12,7 @@ Meteor.methods({
       return "user already Exist";
     }
 
-    const profile = {
-      
-    };
+    const profile = {};
 
     let userId = Accounts.createUser({
       email: data.email, password: data.password, profile: {}
@@ -30,7 +30,7 @@ Meteor.methods({
       let linkedin = linkedinConnection.init(accessToken);
       console.log(linkedinConnection)
       console.log(linkedin)
-      linkedin.connections.retrieve(function(err, connections) {
+      linkedin.connections.retrieve(function (err, connections) {
         // Here you go! Got your connections!
         console.log(err, connections)
       });
@@ -40,6 +40,7 @@ Meteor.methods({
   },
   'twitter.fetch'(accessToken, accessTokenSecret, userId){
     if (Meteor.isServer) {
+
       return new Promise((resolve, reject) => {
         const twitter = new Twitter({
           consumer_key: Meteor.settings.twitter.consumerKey,
@@ -48,17 +49,74 @@ Meteor.methods({
           access_token_secret: accessTokenSecret
         });
 
-        let params = {user_id: userId, count: 200, skip_status: true, include_user_entities: false};
-        twitter.get('friends/list', params, (err, list, res) => {
-          if (!!err) {
-            reject(err);
-          }
-          else {
-            resolve({err, list, res});
-          }
-        });
+        let params = {user_id: userId, count: 20, skip_status: true, include_user_entities: false};
 
+        twitter.get('users/show', params, (err, res)=> {
+          console.log(err, res);
+          if (err) {
+            console.log(err)
+          }
 
+          const friendCount = res.friends_count;
+          console.log(friendCount);
+
+          if (friendCount < 20) {
+            twitter.get('friends/list', params, (err, list, res) => {
+              if (!!err) {
+                console.log(err)
+                return reject(err);
+              }
+              else {
+                console.log(list.users);
+                Contacts.remove({platform: "twitter"});
+                list.users.forEach((u)=> {
+                  const info = {
+                    firstName: u.name,
+                    lastName: u.screen_name || u.name,
+                  };
+
+                  Contacts.insert({userId: this.userId, platform: "twitter", info, dateUpdated: new Date()});
+                });
+
+                //
+              }
+            });
+          } else {
+            let loop = friendCount / 20;
+            let count = 1;
+
+            if (loop > 1 && loop < 2) {
+              loop = 2;
+            }
+
+            while (count < loop) {
+              Fibers(function () {
+                params.cursor = count;
+                twitter.get('friends/list', params, (err, list, res) => {
+                  if (!!err) {
+                    console.log(err)
+                    return reject(err);
+                  }
+                  else {
+                    console.log(list.users);
+                    Contacts.remove({platform: "twitter"});
+
+                    list.users.forEach((u)=> {
+                      const info = {
+                        firstName: u.name,
+                        lastName: u.screen_name || u.name,
+                      };
+                      Contacts.insert({userId: this.userId, platform: "twitter", info, dateUpdated: new Date()});
+                    });
+
+                    //
+                  }
+                });
+              }).run();
+              count++;
+            }
+          }
+        })
       })
     }
   }

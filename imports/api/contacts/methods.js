@@ -8,7 +8,7 @@ Meteor.methods({
   'contact.import.phone'(contacts) {
     const {userId} = this;
 
-    Contacts.remove({});
+    Contacts.remove({platform:"phone"});
     contacts.forEach((contact)=>{
 
       const info = {
