@@ -52,79 +52,133 @@ Meteor.methods({
           access_token_secret: accessTokenSecret
         });
 
-        let params = {user_id: userId, count: 200, skip_status: true, include_user_entities: false};
+        let params = {user_id: userId, count: 20, skip_status: true, include_user_entities: false};
 
         twitter.get('users/show', params, (err, res)=> {
 
-          console.log(err, res);
           if (err) {
             console.log(err)
           }
 
           const friendCount = res.friends_count;
-          console.log(friendCount);
+          console.log(res.screen_name, "Total Friends:",friendCount);
 
-          if (friendCount < 200) {
-            twitter.get('friends/list', params, (err, list, res) => {
-              bound(() => {
+          let userFriends = [];
+          let listCursor = 0;
 
-                if (!!err) {
-                  console.log(err)
-                  return reject(err);
-                }
-                else {
-                  console.log(list.users);
-                  Contacts.remove({platform: "twitter"});
-                  list.users.forEach((u)=> {
-                    const info = {
-                      firstName: u.name,
-                      lastName: u.screen_name || u.name,
-                    };
+          twitter.get('friends/list', params, (err, list, res) => {
+            bound(() => {
+              if (!!err) {
+                console.log(err);
+                return reject(err);
+              }
+              else {
+                console.log(list.users.length);
+                console.log(list.next_cursor);
 
-                    Contacts.insert({userId: this.userId, platform: "twitter", info, dateUpdated: new Date()});
+                list.users.forEach((u) => {
+                  const info = {
+                    firstName: u.name,
+                    lastName: u.screen_name || u.name,
+                  };
+                  userFriends.push({userId: this.userId, platform: "twitter", info, dateUpdated: new Date()})
+                });
+
+                listCursor = list.next_cursor;
+
+                while (listCursor > 0) {
+                  console.log("Looping friends of cursor", listCursor);
+                  params.cursor = listCursor;
+                  twitter.get('friends/list', params, (err, list, res) => {
+                    console.log("Bound 1")
+                    bound(() => {
+                      if (!!err) {
+                        console.log(err);
+                        return reject(err);
+                      }
+                      else {
+                        list.users.forEach((u) => {
+                          const info = {
+                            firstName: u.name,
+                            lastName: u.screen_name || u.name,
+                          };
+                          listCursor = list.next_cursor;
+                          userFriends.push({userId: this.userId, platform: "twitter", info, dateUpdated: new Date()})
+
+                        });
+                      }
+                    })
                   });
-
-                  //
                 }
-              })
+                console.log("All friends imported succesfully. Inserting now to database...");
+                Contacts.remove({userId: this.userId, platform: "twitter"});
+                Contacts.insertMany(userFriends);
+              }
             });
-          } else {
-            let loop = friendCount / 200;
-            let count = 1;
+          });
 
-            if (loop > 1 && loop < 2) {
-              loop = 2;
-            }
-
-            while (count < loop) {
-              params.cursor = count;
-              twitter.get('friends/list', params, (err, list, res) => {
-                bound(() => {
-                  if (!!err) {
-                    console.log(err)
-                    return reject(err);
-                  }
-                  else {
-                    console.log(list.users, "we");
-                    Contacts.remove({platform: "twitter"});
-
-                    list.users.forEach((u)=> {
-                      const info = {
-                        firstName: u.name,
-                        lastName: u.screen_name || u.name,
-                      };
-                      Contacts.insert({userId: this.userId, platform: "twitter", info, dateUpdated: new Date()});
-                    });
-
-                    //
-                  }
-                })
-              });
-              count++;
-            }
-          }
-        })
-      }).run();
+            // if (friendCount <= 20) {
+            //   twitter.get('friends/list', params, (err, list, res) => {
+            //     bound(() => {
+            //       if (!!err) {
+            //         console.log(err)
+            //         return reject(err);
+            //       }
+            //       else {
+            //         console.log(list.users.length);
+            //         console.log(list.next_cursor_str);
+            //         console.log(list.next_cursor);
+            //         Contacts.remove({platform: "twitter"});
+            //         list.users.forEach((u) => {
+            //           const info = {
+            //             firstName: u.name,
+            //             lastName: u.screen_name || u.name,
+            //           };
+            //
+            //           Contacts.insert({userId: this.userId, platform: "twitter", info, dateUpdated: new Date()});
+            //         });
+            //
+            //         //
+            //       }
+            //     });
+            //   });
+            // } else {
+            //   let loop = friendCount / 20;
+            //   let count = 1;
+            //
+            //   if (loop > 1 && loop < 2) {
+            //     loop = 2;
+            //   }
+            //
+            //   while (count < loop) {
+            //     params.cursor = count;
+            //     twitter.get('friends/list', params, (err, list, res) => {
+            //       bound(() => {
+            //         if (!!err) {
+            //           console.log(err)
+            //           return reject(err);
+            //         }
+            //         else {
+            //           console.log(list.users,"we");
+            //           Contacts.remove({platform: "twitter"});
+            //
+            //           list.users.forEach((u)=> {
+            //             const info = {
+            //               firstName: u.name,
+            //               lastName: u.screen_name || u.name,
+            //             };
+            //             Contacts.insert({userId: this.userId, platform: "twitter", info, dateUpdated: new Date()});
+            //           });
+            //
+            //           //
+            //         }
+            //       })
+            //     });
+            //     count++;
+            //   }
+            // }
+          })
+        }).run();
 
     }
   }
