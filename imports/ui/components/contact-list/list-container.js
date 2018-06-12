@@ -5,7 +5,7 @@ import { useDeps } from 'react-simple-di-extra';
 import { Contacts }  from '../../../api/contacts/contacts';
 
 function composer (props, onData ) {
-  let { platform } = props.match.params;
+  let { platform } = props.params;
 
   const ContactSubs = Meteor.subscribe('contacts.list', platform);
 

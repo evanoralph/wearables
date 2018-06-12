@@ -10,8 +10,8 @@ class ContactsList extends React.Component {
   render() {
     return(
       <div id="contacts-container" className="page-container row no-padding no-margin">
-        <HeaderNav img={`img/import-icons/${this.props.platform}.svg`} path="/imports" doneButton={true}/>
-        <List history={this.props.history} match={this.props.match}/>
+        <HeaderNav img={`/img/import-icons/${this.props.match.params.platform}.svg`} path="/imports" doneButton={true}/>
+        <List history={this.props.history} params={this.props.match.params}/>
       </div>
     )
   }
