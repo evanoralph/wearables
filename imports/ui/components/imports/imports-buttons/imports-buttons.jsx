@@ -41,12 +41,30 @@ class ImportButtons extends React.Component {
                 });
                 break;
               case "PHONE":
+                swal({
+                  title: "Importing Contacts...",
+                  onOpen: () => {
+                    swal.showLoading()
+                  },
+                  showConfirmButton: false,
+                  allowOutsideClick: false,
+                  allowEscapeKey: false,
+                });
                 this.props.importPhoneContacts(this.props.history, Meteor.userId());
                 break;
               case "TWITTER":
                 let {accessToken, accessTokenSecret, id} = this.props.user.services.twitter;
                 this.props.loginWithTwitter((res)=>{
                   console.log("TWITTER LOGIN RESULT:", res);
+                  swal({
+                    title: "Importing Contacts...",
+                    onOpen: () => {
+                      swal.showLoading()
+                    },
+                    showConfirmButton: false,
+                    allowOutsideClick: false,
+                    allowEscapeKey: false,
+                  });
                   this.props.importTwitterFriends(this.props.history, accessToken, accessTokenSecret, id, Meteor.userId());
                 });
                 break;

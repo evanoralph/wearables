@@ -72,6 +72,10 @@ button.swal2-confirm {
   color: #FCCBBB !important;
   border-radius: 30px;
   width: 100%;
+
+  &:disabled {
+    color: transparent !important;
+  }
 }
 button.swal2-cancel {
   background: #FFF !important;

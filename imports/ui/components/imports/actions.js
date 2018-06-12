@@ -2,24 +2,33 @@ import swal from 'sweetalert2';
 
 export default {
   importPhoneContacts({Meteor}, history, userId){
-    function onSuccess(contacts) {
-      Meteor.call('contact.import.phone',contacts, userId, (err)=>{
-        if(err){
-          alert(err);
-          return;
-        }
-        swal("Sync Complete");
-        history.push('/contacts-list/phone')
+    if (Meteor.isCordova) {
+      function onSuccess(contacts) {
+        Meteor.call('contact.import.phone',contacts, userId, (err)=>{
+          if(err){
+            alert(err);
+            return;
+          }
+          swal("Sync Complete");
+          history.push('/contacts-list/phone')
+        })
+      };
+      navigator.contacts.find(["name"], onSuccess, (err) => {
+        swal({type: "error", title: "Unable to sync contacts from phone.", description: err, onOpen: ()=>{swal.hideLoading()}});
       })
-    };
-    navigator.contacts.find(["name"],onSuccess)
+    } else {
+      swal({type: "error", title: "Unable to sync contacts from phone.", onOpen: ()=>{swal.hideLoading()}});
+      throw new Meteor.Error("Not phone device");
+    }
   },
   importTwitterFriends({Meteor}, history, accessToken, accessTokenSecret, twitterId, userId){
     Meteor.callPromise('twitter.fetch', accessToken, accessTokenSecret, twitterId, userId,
-      Meteor.userId()).then((response) =>{
+      Meteor.userId()).then((response) => {
       console.log(response);
       swal("Sync Complete");
       history.push('/contacts-list/twitter')
+    }).catch((error) => {
+      swal({type: "error", title: "Unable to sync contacts from Twitter.", description: error, onOpen: ()=>{swal.hideLoading()}});
     });
   },
   loginWithLinkedin({Meteor}, callback) {
