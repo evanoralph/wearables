@@ -49,7 +49,8 @@ class ImportButtons extends React.Component {
                   Meteor.callPromise('twitter.fetch',
                     this.props.user.services.twitter.accessToken,
                     this.props.user.services.twitter.accessTokenSecret,
-                    this.props.user.services.twitter.id).then((response) =>{
+                    this.props.user.services.twitter.id,
+                    Meteor.userId()).then((response) =>{
                       console.log(response);
                   });
                 });
