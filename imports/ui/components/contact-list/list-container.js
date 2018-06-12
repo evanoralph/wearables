@@ -5,14 +5,14 @@ import { useDeps } from 'react-simple-di-extra';
 import { Contacts }  from '../../../api/contacts/contacts';
 
 function composer (props, onData ) {
-  console.log(props);
+  let { platform } = props.match.params;
 
-  const ContactSubs = Meteor.subscribe('contacts.list','phone');
+  const ContactSubs = Meteor.subscribe('contacts.list', platform);
 
   if(ContactSubs.ready()){
     const contacts = Contacts.find().fetch();
     console.log(contacts);
-    onData(null, {contacts});
+    onData(null, {contacts, platform});
   }
 
 }

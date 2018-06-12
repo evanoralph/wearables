@@ -7,6 +7,7 @@ class List extends React.Component {
 
   constructor(props) {
     super(props);
+    console.log(props.contacts)
     this.state = {
       alpha: "a",
       alphabets: "abcdefghijklmnopqrstuvwxyz".split(""),
@@ -99,7 +100,7 @@ class List extends React.Component {
       //     alternateName: "",
       //   },
       // ],
-      contacts:this.props.contacts,
+      contacts: props.contacts,
       keyContacts: [],
 
     }
@@ -153,7 +154,7 @@ class List extends React.Component {
         <div className="contacts-title">
           CHOOSE KEY CONTACTS
         </div>
-        <div class="contacts-container">
+        <div className="contacts-container">
 
           <div className="contacts-list">
 
@@ -168,8 +169,7 @@ class List extends React.Component {
       </div>
     )
   }
-}
-;
+};
 
 const mapStateToProps = (state) => {
   return state;

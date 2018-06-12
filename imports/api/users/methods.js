@@ -64,7 +64,7 @@ Meteor.methods({
                   list.users.forEach((u) => {
                     const info = {
                       firstName: u.name,
-                      lastName: u.name,
+                      lastName: u.screen_name,
                       alternateName: u.screen_name,
                     };
                     userFriends.push({userId: userId, platform: "twitter", info, dateUpdated: new Date()});

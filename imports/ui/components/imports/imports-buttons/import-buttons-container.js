@@ -18,13 +18,14 @@ function composer (props, onData ) {
         services: true
       }
     });
-    onData(null, {user, history:props.history});
+    onData(null, {user, history: props.history});
   }
 }
 
 const depsToPropsMapper = (context, actions) => ({
   context:context,
   importPhoneContacts:actions.importButton.importPhoneContacts,
+  importTwitterFriends:actions.importButton.importTwitterFriends,
   loginWithLinkedin: actions.importButton.loginWithLinkedin,
   loginWithTwitter: actions.importButton.loginWithTwitter,
 });

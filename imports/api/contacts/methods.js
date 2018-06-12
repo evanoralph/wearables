@@ -5,10 +5,9 @@ import { check } from 'meteor/check';
 import { Contacts } from './contacts.js';
 
 Meteor.methods({
-  'contact.import.phone'(contacts) {
-    const {userId} = this;
+  'contact.import.phone'(contacts, userId) {
 
-    Contacts.remove({platform:"phone"});
+    Contacts.remove({userId: userId, platform: "phone"});
     contacts.forEach((contact)=>{
 
       const info = {
@@ -20,7 +19,7 @@ Meteor.methods({
         organizations:contact.organizations,
       };
 
-      Contacts.insert({userId,platform:"phone",info,dateUpdated:new Date()});
+      Contacts.insert({userId, platform: "phone", info, dateUpdated: new Date()});
     });
 
   },

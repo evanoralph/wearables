@@ -187,7 +187,7 @@ class App extends React.Component {
                     <RoutePublic exact name="sign up" path="/sign-up-selection" component={SignUpSelection} {...this.props}/>
                     <RoutesAuthenticated exact name="main" path="/main" component={Main} onSetOpen={this.onSetSidebarOpen} open={this.state.sidebarOpen} {...this.props}/>
                     <RoutesAuthenticated exact name="Imports" path="/imports" component={Imports} onSetOpen={this.onSetSidebarOpen} open={this.state.sidebarOpen} {...this.props}/>
-                    <RoutesAuthenticated exact name="contact list" path="/contacts-list" component={ContactsList} onSetOpen={this.onSetSidebarOpen} open={this.state.sidebarOpen} {...this.props}/>
+                    <RoutesAuthenticated exact name="contact list" path="/contacts-list/:platform" component={ContactsList} onSetOpen={this.onSetSidebarOpen} open={this.state.sidebarOpen} {...this.props}/>
                     <RoutePublic exact name="profile" path="/profile" component={Profile} onSetOpen={this.onSetSidebarOpen} open={this.state.sidebarOpen} {...this.props}/>
                   </Switch>
                 </CSSTransition>

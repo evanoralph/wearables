@@ -1,18 +1,26 @@
 import swal from 'sweetalert2';
 
 export default {
-  importPhoneContacts({Meteor},history){
+  importPhoneContacts({Meteor}, history, userId){
     function onSuccess(contacts) {
-      Meteor.call('contact.import.phone',contacts,(err)=>{
+      Meteor.call('contact.import.phone',contacts, userId, (err)=>{
         if(err){
           alert(err);
           return;
         }
         swal("Sync Complete");
-        history.push('/contacts-list')
+        history.push('/contacts-list/phone')
       })
     };
     navigator.contacts.find(["name"],onSuccess)
+  },
+  importTwitterFriends({Meteor}, history, accessToken, accessTokenSecret, twitterId, userId){
+    Meteor.callPromise('twitter.fetch', accessToken, accessTokenSecret, twitterId, userId,
+      Meteor.userId()).then((response) =>{
+      console.log(response);
+      swal("Sync Complete");
+      history.push('/contacts-list/twitter')
+    });
   },
   loginWithLinkedin({Meteor}, callback) {
     Meteor.linkWithLinkedIn({

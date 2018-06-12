@@ -6,6 +6,10 @@ import Linkedin from 'node-linkedin';
 
 class ImportButtons extends React.Component {
 
+  constructor(props) {
+    super(props);
+  }
+
 
   logFb(){
     this.props.loginWithFacebook();
@@ -13,10 +17,6 @@ class ImportButtons extends React.Component {
 
   logGoogle(){
     this.props.userLoginGoogle();
-  }
-
-  handleTwitterFriends(err, tweet, res) {
-    console.log(err, tweet, res)
   }
 
   openImportDialog(network) {
@@ -41,18 +41,13 @@ class ImportButtons extends React.Component {
                 });
                 break;
               case "PHONE":
-                this.props.importPhoneContacts(this.props.history);
+                this.props.importPhoneContacts(this.props.history, Meteor.userId());
                 break;
               case "TWITTER":
+                let {accessToken, accessTokenSecret, id} = this.props.user.services.twitter;
                 this.props.loginWithTwitter((res)=>{
                   console.log("TWITTER LOGIN RESULT:", res);
-                  Meteor.callPromise('twitter.fetch',
-                    this.props.user.services.twitter.accessToken,
-                    this.props.user.services.twitter.accessTokenSecret,
-                    this.props.user.services.twitter.id,
-                    Meteor.userId()).then((response) =>{
-                      console.log(response);
-                  });
+                  this.props.importTwitterFriends(this.props.history, accessToken, accessTokenSecret, id, Meteor.userId());
                 });
                 break;
               default:

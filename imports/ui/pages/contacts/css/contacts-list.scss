@@ -39,6 +39,9 @@
       line-height: 50px;
       font-weight: normal;
       background-color: #DDB2B2;
+      text-overflow: ellipsis;
+      overflow: hidden;
+      white-space: nowrap;
 
       &.active {
         background-color: #797575;
