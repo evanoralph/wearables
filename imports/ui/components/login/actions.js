@@ -35,7 +35,7 @@ export default {
   userLoginGoogle({Meteor},history){
 
     if (Meteor.isCordova) { // signIn through cordova
-      Meteor.loginWithGoogle({
+      Meteor.linkWithGoogle({
 
         loginStyle: "redirect" ,
         'webClientId': 'com.googleusercontent.apps.825480306969-uglck4esst2m4urn33fl92qb5mjkbiih',
@@ -60,7 +60,7 @@ export default {
       // });
     } else { // signIn through browser
       if (Accounts.loginServicesConfigured()) {
-        Meteor.loginWithGoogle({
+        Meteor.linkWithGoogle({
 
           requestOfflineToken: true,
           requestPermissions: ['email', 'profile'],

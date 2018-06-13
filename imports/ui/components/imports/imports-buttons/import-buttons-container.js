@@ -26,8 +26,10 @@ const depsToPropsMapper = (context, actions) => ({
   context:context,
   importPhoneContacts:actions.importButton.importPhoneContacts,
   importTwitterFriends:actions.importButton.importTwitterFriends,
+  importGoogleContacts:actions.importButton.importGoogleContacts,
   loginWithLinkedin: actions.importButton.loginWithLinkedin,
   loginWithTwitter: actions.importButton.loginWithTwitter,
+  loginWithGoogle: actions.importButton.loginWithGoogle,
 });
 
 export default merge(

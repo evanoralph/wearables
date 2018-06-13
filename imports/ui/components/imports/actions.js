@@ -31,6 +31,16 @@ export default {
       swal({type: "error", title: "Unable to sync contacts from Twitter.", description: error, onOpen: ()=>{swal.hideLoading()}});
     });
   },
+  importGoogleContacts({Meteor}, history, accessToken, googleId, idToken, refreshToken, email, userId){
+    Meteor.callPromise('google.fetch', accessToken, googleId, idToken, refreshToken, email, userId,
+      Meteor.userId()).then((response) => {
+      console.log(response);
+      swal("Sync Complete");
+      history.push('/contacts-list/googleplus')
+    }).catch((error) => {
+      swal({type: "error", title: "Unable to sync contacts from Google+.", description: error, onOpen: ()=>{swal.hideLoading()}});
+    });
+  },
   loginWithLinkedin({Meteor}, callback) {
     Meteor.linkWithLinkedIn({
       loginStyle: "popup",
@@ -56,11 +66,30 @@ export default {
     }, function (err, res) {
       console.log("Twitter login status:", err, res);
       if (err) {
-        console.log("Error Linkedin", err);
-        alert("Error logging in with LinkedIn " + err);
+        console.log("Error Twitter", err);
+        alert("Error logging in with Twitter " + err);
         return;
       } else {
         console.log("Success Twitter", res);
+        callback(res);
+      }
+    });
+  },
+  loginWithGoogle({Meteor}, callback) {
+    Meteor.linkWithGoogle({
+      loginStyle: "popup",
+      'webClientId': '825480306969-uglck4esst2m4urn33fl92qb5mjkbiih.apps.googleusercontent.com',
+      loginUrlParameters: {include_granted_scopes: true},
+      requestOfflineToken: true,
+      requestPermissions: ['email', 'profile', 'https://www.googleapis.com/auth/contacts.readonly'],
+    }, function (err, res) {
+      console.log("Google login status:", err, res);
+      if (err) {
+        console.log("Error Google", err);
+        alert("Error logging in with Google " + err);
+        return;
+      } else {
+        console.log("Success Google", res);
         callback(res);
       }
     });

@@ -28,7 +28,7 @@ export default {
     })
   },
   loginWithFacebook(){
-    Meteor.loginWithFacebook({
+    Meteor.linkWithFacebook({
       loginStyle: "popup" ,
       requestPermissions: ['email']
     }, function (err) {
@@ -42,14 +42,12 @@ export default {
 
     if (Meteor.isCordova) {
 
-      Meteor.loginWithGoogle({
-        loginStyle: "redirect" ,
+      Meteor.linkWithGoogle({
+        loginStyle: "redirect",
         'webClientId': '825480306969-uglck4esst2m4urn33fl92qb5mjkbiih.apps.googleusercontent.com',
-        requestPermissions: ['email'],
         loginUrlParameters: {include_granted_scopes: true},
         requestOfflineToken: true,
-        requestPermissions: ['email', 'profile'],
-
+        requestPermissions: ['email', 'profile', 'https://www.googleapis.com/auth/contacts.readonly'],
       }, (error) => {
         if (error) swal({text:error});
         
@@ -57,15 +55,12 @@ export default {
       });
     } else { // signIn through browser
       if (Accounts.loginServicesConfigured()) {
-        Meteor.loginWithGoogle({
-
-          loginStyle: "redirect" ,
+        Meteor.linkWithGoogle({
+          loginStyle: "redirect",
           'webClientId': '825480306969-uglck4esst2m4urn33fl92qb5mjkbiih.apps.googleusercontent.com',
-          requestPermissions: ['email'],
           loginUrlParameters: {include_granted_scopes: true},
           requestOfflineToken: true,
-          requestPermissions: ['email', 'profile'],
-
+          requestPermissions: ['email', 'profile', 'https://www.googleapis.com/auth/contacts.readonly'],
         }, (error) => {
           if (error) swal({text:error});
         });

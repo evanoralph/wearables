@@ -117,13 +117,19 @@ class List extends React.Component {
     if (!!this.state.contacts) {
 
       let contacts = _.orderBy(this.state.contacts, ['lastName'], ['asc']); // Use Lodash to sort array by 'name'
-      let sorted = contacts.filter((contact) => contact.info.lastName.toUpperCase().startsWith(this.state.alpha.toUpperCase()));
+      let sorted = contacts.filter((contact) => {
+        if (contact.info.lastName) {
+          return contact.info.lastName.toUpperCase().startsWith(this.state.alpha.toUpperCase())
+        } else {
+          return contact.info.firstName.toUpperCase().startsWith(this.state.alpha.toUpperCase())
+        }
+      });
 
       sorted.map((contact, index) => {
         contactList.push(
           <div className={classNames({"contact-item": true, "active": false})} key={index+contact.info.firstName}
                onClick={this.addContactToKeylist.bind(this, contact)}>
-            {contact.info.lastName}, {contact.info.firstName}
+            {contact.info.lastName && contact.info.lastName + ","} {contact.info.firstName} {contact.info.middleName && contact.info.middleName}
           </div>
         )
       })

@@ -153,5 +153,94 @@ Meteor.methods({
       }
     })
 
+  },
+  'google.fetch'(accessToken, googleId, idToken, refreshToken, email, userId){
+    return new Promise((resolve, reject) => {
+      const bound = Meteor.bindEnvironment((callback) => {
+        callback();
+      });
+
+      if (Meteor.isServer) {
+
+        let nextPage = null;
+        let userContacts = [];
+        let loop = 0;
+
+        const getMoreContacts = (GoogleApi, nextPageToken, params, callback) => {
+          if (!!nextPageToken && loop <= 13) {
+            GoogleApi.get('/v1/people/me/connections?personFields=names,emailAddresses&pageSize=2000', {user: Meteor.users.findOne(this.userId)}, (err, res) => {
+              bound(() => {
+                if (err) {
+                  console.log(err);
+                  reject(err)
+                } else {
+                  const contactsCount = res.totalItems;
+                  console.log("Total Google Contacts:",contactsCount);
+                  res.connections.forEach((u) => {
+                    if (u.names || u.emailAddresses) {
+                      const info = {
+                        firstName: u.names ? u.names[0].givenName || u.names[0].displayName : null,
+                        middleName: u.names ? u.names[0].middleName : null,
+                        lastName: u.names ? u.names[0].familyName : u.emailAddresses ? u.emailAddresses[0].value : null,
+                        alternateName: u.names ? u.names[0].displayName : null,
+                      };
+                      userContacts.push({userId: userId, platform: "googleplus", info, dateUpdated: new Date()});
+                    }
+                  });
+
+                  if (contactsCount > 2000) {
+                    loop++;
+                    getMoreContacts(GoogleApi, res.nextPageToken, (err, res)=>{});
+                  } else {
+                    console.log("All Google Contacts imported succesfully. Inserting now to database...");
+                    Contacts.remove({userId: userId, platform: "googleplus"});
+                    userContacts.forEach((contact)=> {
+                      Contacts.insert(contact);
+                    });
+                    resolve(userContacts);
+                  }
+                }
+              });
+            });
+          }
+        };
+
+
+        GoogleApi.get('/v1/people/me/connections?personFields=names,emailAddresses&pageSize=2000', {user: Meteor.users.findOne(this.userId)}, (err, res) => {
+          bound(() => {
+            if (err) {
+              console.log(err);
+              reject(err)
+            } else {
+              const contactsCount = res.totalItems;
+              console.log("Total Google Contacts:",contactsCount);
+              res.connections.forEach((u) => {
+                if (u.names || u.emailAddresses) {
+                  const info = {
+                    firstName: u.names ? u.names[0].givenName || u.names[0].displayName : null,
+                    middleName: u.names ? u.names[0].middleName : null,
+                    lastName: u.names ? u.names[0].familyName : u.emailAddresses ? u.emailAddresses[0].value : null,
+                    alternateName: u.names ? u.names[0].displayName : null,
+                  };
+                  userContacts.push({userId: userId, platform: "googleplus", info, dateUpdated: new Date()});
+                }
+              });
+
+              if (contactsCount > 2000) {
+                getMoreContacts(GoogleApi, res.nextPageToken, (err, res)=>{});
+              } else {
+                console.log("All Google Contacts imported succesfully. Inserting now to database...");
+                Contacts.remove({userId: userId, platform: "googleplus"});
+                userContacts.forEach((contact)=> {
+                  Contacts.insert(contact);
+                });
+                resolve(userContacts);
+              }
+            }
+          });
+        });
+      }
+    })
+
   }
 });

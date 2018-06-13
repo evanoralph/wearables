@@ -34,9 +34,13 @@ class ImportButtons extends React.Component {
             switch (network) {
 
               case "LINKEDIN":
+
                 this.props.loginWithLinkedin((res)=>{
                   Meteor.call('linkedin.fetch', this.props.user.services.linkedin.accessToken, (err,res)=>{
-                    console.log(err, res)
+                    swal({
+                      title: "LinkedIn Contacts Not Supported Yet",
+                      type: "error"
+                    });
                   })
                 });
                 break;
@@ -53,7 +57,7 @@ class ImportButtons extends React.Component {
                 this.props.importPhoneContacts(this.props.history, Meteor.userId());
                 break;
               case "TWITTER":
-                let {accessToken, accessTokenSecret, id} = this.props.user.services.twitter;
+                let {twAccessToken, twAccessTokenSecret, twitterId} = this.props.user.services.twitter;
                 this.props.loginWithTwitter((res)=>{
                   console.log("TWITTER LOGIN RESULT:", res);
                   swal({
@@ -65,11 +69,36 @@ class ImportButtons extends React.Component {
                     allowOutsideClick: false,
                     allowEscapeKey: false,
                   });
-                  this.props.importTwitterFriends(this.props.history, accessToken, accessTokenSecret, id, Meteor.userId());
+                  this.props.importTwitterFriends(this.props.history, twAccessToken, twAccessTokenSecret, twitterId, Meteor.userId());
+                });
+                break;
+              case "GOOGLE+":
+                console.log(this.props.user.services.google);
+                this.props.loginWithGoogle((res)=>{
+                  console.log("GOOGLE LOGIN RESULT:", res);
+                  swal({
+                    title: "Importing Contacts...",
+                    onOpen: () => {
+                      swal.showLoading()
+                    },
+                    showConfirmButton: false,
+                    allowOutsideClick: false,
+                    allowEscapeKey: false,
+                  });
+                  this.props.importGoogleContacts(this.props.history, null, null, null, null, null, Meteor.userId());
                 });
                 break;
               default:
-                this.props.importPhoneContacts(this.props.history);
+                swal({
+                  title: "Importing Contacts...",
+                  onOpen: () => {
+                    swal.showLoading()
+                  },
+                  showConfirmButton: false,
+                  allowOutsideClick: false,
+                  allowEscapeKey: false,
+                });
+                this.props.importPhoneContacts(this.props.history, Meteor.userId());
                 break;
             }
 
