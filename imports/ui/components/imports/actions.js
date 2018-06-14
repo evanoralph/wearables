@@ -80,11 +80,12 @@ export default {
   loginWithGoogle({Meteor}, callback) {
     console.log("LoginWithGoogle action");
     Meteor.linkWithGoogle({
-      loginStyle: "redirect",
-      'webClientId': '825480306969-uglck4esst2m4urn33fl92qb5mjkbiih.apps.googleusercontent.com',
+      loginStyle: "popup" ,
+      'webClientId': 'com.googleusercontent.apps.825480306969-uglck4esst2m4urn33fl92qb5mjkbiih',
+      requestPermissions: ['email'],
       loginUrlParameters: {include_granted_scopes: true},
       requestOfflineToken: true,
-      requestPermissions: ['email', 'profile', 'contacts', 'https://www.googleapis.com/auth/contacts.readonly'],
+      requestPermissions: ['email', 'profile', 'https://www.googleapis.com/auth/contacts.readonly'],
     }, function (err, res) {
       console.log("Google login status:", err, res);
       if (err) {

@@ -32,9 +32,7 @@ class ImportButtons extends React.Component {
           if (result.value) {
 
             switch (network) {
-
               case "LINKEDIN":
-
                 this.props.loginWithLinkedin((res)=>{
                   Meteor.call('linkedin.fetch', this.props.user.services.linkedin.accessToken, (err,res)=>{
                     swal({
@@ -57,10 +55,10 @@ class ImportButtons extends React.Component {
                 this.props.importPhoneContacts(this.props.history, Meteor.userId());
                 break;
               case "TWITTER":
-                this.props.loginWithTwitter((res)=>{
-                  console.log("TWITTER LOGIN RESULT:", res);
+                if (Meteor.user().services.twitter) {
+                  console.log("TWITTER ALREADY LINKED");
                   swal({
-                    title: "Importing Contacts...",
+                    title: "Synchronizing Contacts...",
                     onOpen: () => {
                       swal.showLoading()
                     },
@@ -68,17 +66,41 @@ class ImportButtons extends React.Component {
                     allowOutsideClick: false,
                     allowEscapeKey: false,
                   });
-                  setTimeout(()=>{
-                    let {accessToken, accessTokenSecret, id} = Meteor.user().services.twitter;
-                    this.props.importTwitterFriends(this.props.history, accessToken, accessTokenSecret, id, Meteor.userId());
-                  }, 2000)
-                });
+                  let {accessToken, accessTokenSecret, id} = Meteor.user().services.twitter;
+                  this.props.importTwitterFriends(this.props.history, accessToken, accessTokenSecret, id, Meteor.userId());
+                } else {
+                  this.props.loginWithTwitter((res)=>{
+                    console.log("TWITTER LOGIN RESULT:", res);
+                    swal({
+                      title: "Importing Contacts...",
+                      onOpen: () => {
+                        swal.showLoading()
+                      },
+                      showConfirmButton: false,
+                      allowOutsideClick: false,
+                      allowEscapeKey: false,
+                    });
+                    setTimeout(()=>{
+                      let {accessToken, accessTokenSecret, id} = Meteor.user().services.twitter;
+                      this.props.importTwitterFriends(this.props.history, accessToken, accessTokenSecret, id, Meteor.userId());
+                    }, 3000)
+                  });
+                }
                 break;
               case "GOOGLE+":
                 // console.log(this.props.user.services.google);
                 console.log("Call Login");
-
                 if (Meteor.user().services.google) {
+                  console.log("GOOGLE ALREADY LINKED");
+                  swal({
+                    title: "Synchronizing Contacts...",
+                    onOpen: () => {
+                      swal.showLoading()
+                    },
+                    showConfirmButton: false,
+                    allowOutsideClick: false,
+                    allowEscapeKey: false,
+                  });
                   this.props.importGoogleContacts(this.props.history, null, null, null, null, null, Meteor.userId());
                 } else {
                   this.props.loginWithGoogle((res)=>{
@@ -94,7 +116,7 @@ class ImportButtons extends React.Component {
                     });
                     setTimeout(()=>{
                       this.props.importGoogleContacts(this.props.history, null, null, null, null, null, Meteor.userId());
-                    }, 2000);
+                    }, 3000);
                   });
                 }
                 break;

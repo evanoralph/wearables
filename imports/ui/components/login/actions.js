@@ -36,14 +36,12 @@ export default {
 
     if (Meteor.isCordova) { // signIn through cordova
       Meteor.linkWithGoogle({
-
-        loginStyle: "redirect" ,
+        loginStyle: "popup" ,
         'webClientId': 'com.googleusercontent.apps.825480306969-uglck4esst2m4urn33fl92qb5mjkbiih',
         requestPermissions: ['email'],
         loginUrlParameters: {include_granted_scopes: true},
         requestOfflineToken: true,
         requestPermissions: ['email', 'profile', 'https://www.googleapis.com/auth/contacts.readonly'],
-
       }, (error) => {
         if (error) alert(error);
         
@@ -61,6 +59,10 @@ export default {
     } else { // signIn through browser
       if (Accounts.loginServicesConfigured()) {
         Meteor.linkWithGoogle({
+          loginStyle: "popup" ,
+          'webClientId': 'com.googleusercontent.apps.825480306969-uglck4esst2m4urn33fl92qb5mjkbiih',
+          requestPermissions: ['email'],
+          loginUrlParameters: {include_granted_scopes: true},
           requestOfflineToken: true,
           requestPermissions: ['email', 'profile', 'https://www.googleapis.com/auth/contacts.readonly'],
         }, (error) => {
