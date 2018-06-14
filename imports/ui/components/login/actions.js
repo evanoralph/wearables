@@ -42,7 +42,7 @@ export default {
         requestPermissions: ['email'],
         loginUrlParameters: {include_granted_scopes: true},
         requestOfflineToken: true,
-        requestPermissions: ['email', 'profile'],
+        requestPermissions: ['email', 'profile', 'https://www.googleapis.com/auth/contacts.readonly'],
 
       }, (error) => {
         if (error) alert(error);
@@ -61,10 +61,8 @@ export default {
     } else { // signIn through browser
       if (Accounts.loginServicesConfigured()) {
         Meteor.linkWithGoogle({
-
           requestOfflineToken: true,
-          requestPermissions: ['email', 'profile'],
-
+          requestPermissions: ['email', 'profile', 'https://www.googleapis.com/auth/contacts.readonly'],
         }, (error) => {
           if (error) alert(error);
         });

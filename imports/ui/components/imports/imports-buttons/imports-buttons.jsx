@@ -57,7 +57,6 @@ class ImportButtons extends React.Component {
                 this.props.importPhoneContacts(this.props.history, Meteor.userId());
                 break;
               case "TWITTER":
-                let {twAccessToken, twAccessTokenSecret, twitterId} = this.props.user.services.twitter;
                 this.props.loginWithTwitter((res)=>{
                   console.log("TWITTER LOGIN RESULT:", res);
                   swal({
@@ -69,24 +68,35 @@ class ImportButtons extends React.Component {
                     allowOutsideClick: false,
                     allowEscapeKey: false,
                   });
-                  this.props.importTwitterFriends(this.props.history, twAccessToken, twAccessTokenSecret, twitterId, Meteor.userId());
+                  setTimeout(()=>{
+                    let {accessToken, accessTokenSecret, id} = Meteor.user().services.twitter;
+                    this.props.importTwitterFriends(this.props.history, accessToken, accessTokenSecret, id, Meteor.userId());
+                  }, 2000)
                 });
                 break;
               case "GOOGLE+":
-                console.log(this.props.user.services.google);
-                this.props.loginWithGoogle((res)=>{
-                  console.log("GOOGLE LOGIN RESULT:", res);
-                  swal({
-                    title: "Importing Contacts...",
-                    onOpen: () => {
-                      swal.showLoading()
-                    },
-                    showConfirmButton: false,
-                    allowOutsideClick: false,
-                    allowEscapeKey: false,
-                  });
+                // console.log(this.props.user.services.google);
+                console.log("Call Login");
+
+                if (Meteor.user().services.google) {
                   this.props.importGoogleContacts(this.props.history, null, null, null, null, null, Meteor.userId());
-                });
+                } else {
+                  this.props.loginWithGoogle((res)=>{
+                    console.log("GOOGLE LOGIN RESULT:", res);
+                    swal({
+                      title: "Importing Contacts...",
+                      onOpen: () => {
+                        swal.showLoading()
+                      },
+                      showConfirmButton: false,
+                      allowOutsideClick: false,
+                      allowEscapeKey: false,
+                    });
+                    setTimeout(()=>{
+                      this.props.importGoogleContacts(this.props.history, null, null, null, null, null, Meteor.userId());
+                    }, 2000);
+                  });
+                }
                 break;
               default:
                 swal({

@@ -22,6 +22,7 @@ export default {
     }
   },
   importTwitterFriends({Meteor}, history, accessToken, accessTokenSecret, twitterId, userId){
+    console.log(accessToken, accessTokenSecret)
     Meteor.callPromise('twitter.fetch', accessToken, accessTokenSecret, twitterId, userId,
       Meteor.userId()).then((response) => {
       console.log(response);
@@ -32,6 +33,7 @@ export default {
     });
   },
   importGoogleContacts({Meteor}, history, accessToken, googleId, idToken, refreshToken, email, userId){
+    console.log("Calling google.fetch");
     Meteor.callPromise('google.fetch', accessToken, googleId, idToken, refreshToken, email, userId,
       Meteor.userId()).then((response) => {
       console.log(response);
@@ -76,18 +78,19 @@ export default {
     });
   },
   loginWithGoogle({Meteor}, callback) {
+    console.log("LoginWithGoogle action");
     Meteor.linkWithGoogle({
-      loginStyle: "popup",
+      loginStyle: "redirect",
       'webClientId': '825480306969-uglck4esst2m4urn33fl92qb5mjkbiih.apps.googleusercontent.com',
       loginUrlParameters: {include_granted_scopes: true},
       requestOfflineToken: true,
-      requestPermissions: ['email', 'profile', 'https://www.googleapis.com/auth/contacts.readonly'],
+      requestPermissions: ['email', 'profile', 'contacts', 'https://www.googleapis.com/auth/contacts.readonly'],
     }, function (err, res) {
       console.log("Google login status:", err, res);
       if (err) {
         console.log("Error Google", err);
         alert("Error logging in with Google " + err);
-        return;
+        callback(err);
       } else {
         console.log("Success Google", res);
         callback(res);
