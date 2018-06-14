@@ -89,7 +89,7 @@ class ImportButtons extends React.Component {
                 break;
               case "GOOGLE+":
                 // console.log(this.props.user.services.google);
-                console.log("Call Login");
+                console.log("Call Login",Meteor.user().services.google);
                 if (Meteor.user().services.google) {
                   console.log("GOOGLE ALREADY LINKED");
                   swal({

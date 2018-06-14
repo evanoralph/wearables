@@ -23,4 +23,10 @@ Meteor.startup(function() {
         })
 
     }
+    if (Meteor.isClient){
+        var scopes = ['email', 'profile', 'https://www.googleapis.com/auth/contacts.readonly'];
+        Accounts.ui.config({
+            requestPermissions: {google: scopes}
+        });
+    }
 })
