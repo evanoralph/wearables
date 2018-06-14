@@ -114,9 +114,7 @@ class ImportButtons extends React.Component {
                       allowOutsideClick: false,
                       allowEscapeKey: false,
                     });
-                    setTimeout(()=>{
-                      this.props.importGoogleContacts(this.props.history, null, null, null, null, null, Meteor.userId());
-                    }, 3000);
+                    this.props.importGoogleContacts(this.props.history, null, null, null, null, null, Meteor.userId());
                   });
                 }
                 break;

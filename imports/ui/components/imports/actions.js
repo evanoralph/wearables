@@ -34,11 +34,10 @@ export default {
   },
   importGoogleContacts({Meteor}, history, accessToken, googleId, idToken, refreshToken, email, userId){
     console.log("Calling google.fetch");
-    Meteor.callPromise('google.fetch', accessToken, googleId, idToken, refreshToken, email, userId,
-      Meteor.userId()).then((response) => {
+    Meteor.callPromise('google.fetch', accessToken, googleId, idToken, refreshToken, email, userId).then((response) => {
       console.log(response);
+      history.push('/contacts-list/googleplus');
       swal("Sync Complete");
-      history.push('/contacts-list/googleplus')
     }).catch((error) => {
       swal({type: "error", title: "Unable to sync contacts from Google+.", description: error, onOpen: ()=>{swal.hideLoading()}});
     });
@@ -79,7 +78,38 @@ export default {
   },
   loginWithGoogle({Meteor}, callback) {
     console.log("LoginWithGoogle action");
-    Meteor.loginWithGoogle({
+    if (Meteor.isClient) {
+      Meteor.linkWithGoogle = function (options, callback) {
+        if (!Meteor.userId()) {
+          throw new Meteor.Error(402, 'Please login to an existing account before link.');
+        }
+        if(!Package['accounts-google'] && !Package['google']) {
+          throw new Meteor.Error(403, 'Please include accounts-google and google package');
+        }
+
+        if (!callback && typeof options === "function") {
+          callback = options;
+          options = null;
+        }
+
+        var credentialRequestCompleteCallback = Accounts.oauth.linkCredentialRequestCompleteHandler(callback);
+        if(Meteor.isCordova){
+          window.plugins.googleplus.login(
+            {},
+            function (serviceData) {
+              Meteor.call('cordovaGoogle', 'google', serviceData);
+              callback();
+            },
+            function (err) {
+              callback(err);
+            }
+          );
+        }else{
+          Package['google-oauth'].Google.requestCredential(options, credentialRequestCompleteCallback);
+        }
+      };
+    }
+    Meteor.linkWithGoogle({
       loginStyle: "popup" ,
       'webClientId': 'com.googleusercontent.apps.825480306969-uglck4esst2m4urn33fl92qb5mjkbiih',
       loginUrlParameters: {include_granted_scopes: true},

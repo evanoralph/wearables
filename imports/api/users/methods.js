@@ -197,7 +197,7 @@ Meteor.methods({
                     userContacts.forEach((contact)=> {
                       Contacts.insert(contact);
                     });
-                    resolve(userContacts);
+                    return resolve(userContacts);
                   }
                 }
               });

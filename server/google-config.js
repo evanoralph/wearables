@@ -15,7 +15,7 @@ Meteor.startup(() => {
     { service: "google" },
     {
       $set: {
-        loginStyle: "redirect",
+        loginStyle: "popup",
         service: "google",
         clientId: google.clientId,
         secret: google.clientSecret,
