@@ -168,10 +168,10 @@ Meteor.methods({
 
         const getMoreContacts = (GoogleApi, nextPageToken, params, callback) => {
           if (!!nextPageToken && loop <= 13) {
-            GoogleApi.get('/v1/people/me/connections?personFields=names,emailAddresses&pageSize=2000', {user: Meteor.users.findOne(this.userId)}, (err, res) => {
+            GoogleApi.get('/v1/people/me/connections?personFields=names,emailAddresses&pageSize=500', {user: Meteor.users.findOne(this.userId)}, (err, res) => {
               bound(() => {
                 if (err) {
-                  console.log(err);
+                  console.log(JSON.stringify(err));
                   reject(err)
                 } else {
                   const contactsCount = res.totalItems;

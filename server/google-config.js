@@ -10,13 +10,24 @@ const google = {
 
 Meteor.startup(() => {
 
+
   Accounts.loginServiceConfiguration.upsert(
     { service: "google" },
     {
       $set: {
+        loginStyle: "redirect",
         service: "google",
         clientId: google.clientId,
-        secret: google.clientSecret
+        secret: google.clientSecret,
+        forceApprovalPrompt: {google: true},
+        requestOfflineToken: {google: true},
+        requestPermissions: {
+          google: [
+            'https://www.googleapis.com/auth/userinfo.profile',
+            'https://www.googleapis.com/auth/userinfo.email',
+            'https://www.googleapis.com/auth/contacts.readonly',
+          ]
+        }
       }
     }
   );
