@@ -11,6 +11,26 @@ body {
   }
 }
 
+// Disable Text Selection Fix
+*
+{
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+input
+{
+  -webkit-user-select: auto !important;
+  -khtml-user-select: auto !important;
+  -moz-user-select: auto !important;
+  -ms-user-select: auto !important;
+  user-select: auto !important;
+}
+// End Disable Text Selection Fix
+
 //iPhone X FIXES
 body {
   //padding-top: constant(safe-area-inset-top); /* iOS 11.0 */
