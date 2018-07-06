@@ -122,7 +122,7 @@ class SignUpForm extends React.Component {
           <div className="col-xs-12 no-padding">
             <MyValidationInput type="text" name='firstName' placeholder="first name" validations={[required]}/>
             <MyValidationInput type="text" name='lastName' placeholder="last name" validations={[required]}/>
-            <MyValidationInput type="text" name='email' placeholder="email" validations={[required,email]}/>
+            <MyValidationInput type="email" name='email' placeholder="email" validations={[required,email]}/>
             <div onClick={this.openPicker.bind(this)}>
               <MyValidationInput type="text" disabled name='date' value={this.state.date}  placeholder="birthday" validations={[required]}/>
             </div>
