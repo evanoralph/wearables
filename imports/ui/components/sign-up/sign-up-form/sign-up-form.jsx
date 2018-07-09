@@ -65,9 +65,12 @@ class SignUpForm extends React.Component {
     }));
   };
 
-  setDate(){
-    const {month,day,year} =this.state.valueGroups;
-    this.setState({pickerStatus:false,date:`${month}-${day}-${year}`})
+  setDate(e){
+    // const {month,day,year} =this.state.valueGroups;
+    // this.setState({pickerStatus:false,date:`${month}-${day}-${year}`})
+    this.setState({
+      date: e.target.value
+    })
   }
 
   picker() {
@@ -111,6 +114,8 @@ class SignUpForm extends React.Component {
 
   render() {
 
+    console.log("date", this.state.date)
+
     return (
       <div className="sign-up-form-container row-fluid no-margin" >
         <Form
@@ -124,7 +129,7 @@ class SignUpForm extends React.Component {
             <MyValidationInput type="text" name='firstName' placeholder="first name" validations={[required]}/>
             <MyValidationInput type="text" name='lastName' placeholder="last name" validations={[required]}/>
             <MyValidationInput type="email" name='email' placeholder="email" validations={[required,email]}/>
-            <MyValidationInput type="date" name='date' className="date-input" value={this.state.date}  placeholder="birthday" validations={[required]}  onchange="this.className=(this.value!=''?'has-value':'')"/>
+            <MyValidationInput type="date" name='date' className={classNames({"date-input": true, "has-value": !(this.state.date === "")})} value={this.state.date} onChange={this.setDate.bind(this)}  placeholder="birthday" validations={[required]}/>
             {/*<div onClick={this.openPicker.bind(this)}>*/}
               {/*<MyValidationInput type="text" disabled name='date' value={this.state.date}  placeholder="birthday" validations={[required]}/>*/}
             {/*</div>*/}

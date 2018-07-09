@@ -35,6 +35,12 @@ input[type="date"]:not(.has-value):before{
   color: #FCCBBB;
   content: attr(placeholder);
 }
+input[type="date"] {
+  -webkit-appearance: none;
+  width: 100vw !important;
+  background: #726D6D !important;
+
+}
 // End Disable Text Selection Fix
 
 //iPhone X FIXES
@@ -106,11 +112,9 @@ a {
 .input-container{
   input {
     width: 100%;
-    background: none;
     border: none;
     font-size: 21px;
     color: white;
-    background: white;
 
     .placeholder {
       color: #FCCBBB;
