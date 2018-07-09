@@ -29,6 +29,12 @@ input
   -ms-user-select: auto !important;
   user-select: auto !important;
 }
+
+// Fix for adding placeholder to date input types
+input[type="date"]:not(.has-value):before{
+  color: #FCCBBB;
+  content: attr(placeholder);
+}
 // End Disable Text Selection Fix
 
 //iPhone X FIXES
